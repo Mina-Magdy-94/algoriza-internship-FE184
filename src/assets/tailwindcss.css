@@ -2,8 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@font-face {
+    font-family: "MainFont";
+    src: url(../assets/fonts/SF-Pro-Display-Regular.ttf);
+}
+
 *{
     box-sizing: border-box;
+    font-family: "MainFont";
 }
 
 

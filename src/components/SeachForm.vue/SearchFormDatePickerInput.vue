@@ -1,8 +1,8 @@
 <template>
     <div class="relative flex justify-between  rounded-[4px] w-[173px]">
-        <VueDatePicker ref="datePickerInput" v-model="date" :min-date="props.minDate"
-            @update:model-value="emits('dateSelected', date)" :placeholder="props.placeholder" class="text-[13px] leading-5 "
-            input-class-name="date-picker"></VueDatePicker>
+        <VueDatePicker :enable-time-picker="false" ref="datePickerInput" :model-value="modelValue"
+            @update:model-value="handleDateSelection" :max-date="maxDate" :min-date="minDate" :placeholder="props.placeholder"
+            class="text-[13px] leading-5 " input-class-name="date-picker"></VueDatePicker>
     </div>
 </template>
 
@@ -11,12 +11,20 @@ import VueDatePicker from '@vuepic/vue-datepicker';
 import { ref } from 'vue'
 let props = defineProps({
     'minDate': String | Date,
-    'placeholder': String
+    maxDate: String | Date,
+    'placeholder': String,
+    'modelValue': Date | String | Object
 })
-let emits = defineEmits(['dateSelected'])
+
+let emit = defineEmits(["update:modelValue"])
 let datePickerInput = ref()
 
-let date = ref()
+
+const handleDateSelection = (val) => {
+    emit('update:modelValue', val)
+}
+
+
 
 </script>
 
@@ -25,18 +33,23 @@ let date = ref()
     --dp-font-size: 12px;
     /*Default font-size*/
 }
-.dp__main{
+
+.dp__main {
     border: none;
     outline: none;
 }
 
 
-.dp__theme_light{
-    --dp-background-color:#F2F2F2
+.dp__theme_light {
+    --dp-background-color: #F2F2F2
 }
 
-.dp__action_select{
+.dp__action_select {
     background-color: var(--dp-background-color);
     color: white;
 }
 </style>
+
+
+
+<!-- @update:model-value="emits('dateSelected', date)" -->

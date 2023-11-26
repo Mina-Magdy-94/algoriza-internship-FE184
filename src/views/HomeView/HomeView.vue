@@ -18,6 +18,7 @@
 </template>
 
 <script setup>
+import { useRoute } from 'vue-router';
 import BaseSearch from '@/components/SeachForm.vue/BaseSearch.vue';
 import HomeViewHeroImage from './HomeViewHeroImage.vue';
 import HomeViewAlert from './HomeViewAlert.vue';
@@ -27,6 +28,7 @@ import HomeViewTopicsList from './HomeViewTopicsList.vue';
 import HomeViewFinalImage from './HomeViewFinalImage.vue';
 
 // @ is an alias to /src
+
 
 let countries = ref([
   { name: 'Australia', description: '2246 properties', imgSrc: 'australia.webp' },
