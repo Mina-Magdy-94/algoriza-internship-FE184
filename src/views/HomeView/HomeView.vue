@@ -4,7 +4,7 @@
     <section class="px-[105px] translate-y-[-50%]">
       <BaseSearch />
     </section>
-    <HomeViewAlert />
+    <CovidAlert/>
     <HomeViewCardList :heading="'Enjoy your dream vacation'" :description="`Plan and book our perfect trip with expert advice, travel tips,
             destination information and inspiration from us`" :list="countries" />
     <HomeViewTopicsList :topics="topics" />
@@ -21,11 +21,11 @@
 import { useRoute } from 'vue-router';
 import BaseSearch from '@/components/SeachForm.vue/BaseSearch.vue';
 import HomeViewHeroImage from './HomeViewHeroImage.vue';
-import HomeViewAlert from './HomeViewAlert.vue';
 import { ref } from 'vue';
 import HomeViewCardList from './HomeViewCardList.vue';
 import HomeViewTopicsList from './HomeViewTopicsList.vue';
 import HomeViewFinalImage from './HomeViewFinalImage.vue';
+import CovidAlert from '@/components/UI/CovidAlert.vue';
 
 // @ is an alias to /src
 
