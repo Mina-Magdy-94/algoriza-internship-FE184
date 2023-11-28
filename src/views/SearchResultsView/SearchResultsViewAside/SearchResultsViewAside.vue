@@ -3,7 +3,7 @@
         <FilterByName />
         <h2 class=" text-lg font-semibold tracking[0.36px] text-[#333333] w-[66px] h-[21px] ml-[18px] mb-5">Filter by
         </h2>
-        <FilterByBudget />
+        <FilterByBudget :set-data-updated-to-true="setDataUpdatedToTrue"/>
         <FilterByRating />
     </aside>
 </template>
@@ -13,6 +13,9 @@ import FilterByBudget from './FilterByBudget.vue';
 import FilterByName from './FilterByName.vue';
 import FilterByRating from './FilterByRating.vue';
 
+let props=defineProps(({
+    setDataUpdatedToTrue:Function
+}))
 
 
 

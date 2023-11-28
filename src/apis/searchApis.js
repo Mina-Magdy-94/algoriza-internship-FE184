@@ -1,7 +1,16 @@
 import { axiosInstance } from "../apis/axiosInstance"
-let getAllCities=()=>{
+let getAllCities=(paramsObject)=>{
     return axiosInstance.get('searchDestination',{
-        params: {query: 'egypt'},
+        params:paramsObject ,
+        headers:{
+            requiresNoToken:true
+        }
+    })
+}
+
+let getSortOptions=(paramsObject)=>{
+    return axiosInstance.get('getSortBy',{
+        params: paramsObject,
         headers:{
             requiresNoToken:true
         }
@@ -17,10 +26,11 @@ let searchHotels=(filters)=>{
             departure_date: filters.departure_date,
             adults: filters.adults,
             room_qty: filters.room_qty,
-            page_number: filters.page_number || '1'
+            page_number: filters.page_number || '1',
+            sort_by:filters.sort_by
         }
     })
 }
 
 
-export{getAllCities,searchHotels}
+export{getAllCities,searchHotels,getSortOptions}

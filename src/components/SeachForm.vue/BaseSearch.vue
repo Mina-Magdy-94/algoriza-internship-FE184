@@ -8,7 +8,7 @@
                 v-model="filters.departure_date" />
             <SearchFormTextInput src="userIcon.svg" placeholder="Guests" v-model="filters.adults" />
             <SearchFormTextInput src="roomsIcon.svg" placeholder="Rooms" v-model="filters.room_qty" />
-            <BaseButton button-text="Search" class="w-[134px]" @click.prevent="search" />
+            <BaseButton button-text="Search" class="w-[134px]" @click.prevent="search()" />
         </form>
         <p v-if="error" class="text-sm text-center text-red-400">error</p>
     </div>
@@ -16,17 +16,17 @@
 
 <script setup>
 import '@vuepic/vue-datepicker/dist/main.css'
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import SearchFormSelectInput from './SearchFormSelectInput';
 import SearchFormDatePickerInput from './SearchFormDatePickerInput.vue';
 import SearchFormTextInput from './SearchFormTextInput.vue';
 import BaseButton from '../UI/BaseButton.vue';
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 import * as searchApis from '@/apis/searchApis';
 import { checkTokenValidity } from '@/helpers/utils';
-import {useAppStore} from '../../store/store'
+import { useAppStore } from '../../store/store'
 
-let appStore=useAppStore()
+let appStore = useAppStore()
 
 let today = ref(new Date())
 const tomorrowDate = new Date(today.value.getFullYear(), today.value.getMonth(), today.value.getDate() + 1)
@@ -38,7 +38,7 @@ const maxCheckInDate = computed(() => {
     }
 })
 let minimumCheckOutDate = computed(() => {
-    let arrivalDatePlusOne =filters.value.arrival_date && new Date(filters.value.arrival_date.getFullYear(), filters.value.arrival_date.getMonth(), filters.value.arrival_date.getDate() + 1)
+    let arrivalDatePlusOne = filters.value.arrival_date && new Date(filters.value.arrival_date.getFullYear(), filters.value.arrival_date.getMonth(), filters.value.arrival_date.getDate() + 1)
     return arrivalDatePlusOne || tomorrowDate
 })
 
@@ -52,26 +52,53 @@ const filters = ref({
 })
 
 let router = useRouter()
+let route = useRoute()
 let error = ref(null)
 
 
-let search = () => {
-    let arrival_date =filters.value.arrival_date && filters.value.arrival_date.toISOString().split("T")[0]
-    let departure_date =filters.value.departure_date && filters.value.departure_date.toISOString().split("T")[0]
 
-    let isValidToken= checkTokenValidity()
+let search = async () => {
+    let arrival_date = filters.value.arrival_date && filters.value.arrival_date.toISOString().split("T")[0]
+    let departure_date = filters.value.departure_date && filters.value.departure_date.toISOString().split("T")[0]
+    appStore.setLastSavedSearch({ ...filters.value,arrival_date,departure_date })
+    let searchParameters={ ...filters.value,arrival_date,departure_date }
+    let StringifiedSearchParameters=JSON.stringify(searchParameters)
+    localStorage.setItem('searchParameters',StringifiedSearchParameters)
 
-    if(isValidToken){
-        searchApis.searchHotels({...filters.value,arrival_date,departure_date})
-        if(router.name ==='home'){
-            router.push({name:'results'})
+
+    let isValidToken = checkTokenValidity()
+
+    if (isValidToken) {
+        if (route.name === 'home') {
+            router.push({ name: 'searchResults' })
         }
-    }else{
-        appStore.setLastSavedSearch({...filters.value,hasLastSavedSearch:true})
-        router.push({name:'signin'})
+    } else {
+        router.push({ name: 'signin' })
     }
 
 }
+
+
+// let search = async() => {
+//     let arrival_date =filters.value.arrival_date && filters.value.arrival_date.toISOString().split("T")[0]
+//     let departure_date =filters.value.departure_date && filters.value.departure_date.toISOString().split("T")[0]
+
+//     let isValidToken= checkTokenValidity()
+
+//     if(isValidToken){
+//         let results=await  (searchApis.searchHotels({...filters.value,arrival_date,departure_date}))
+//         let data= await results.data
+//         console.log(data.data)
+//         if(route.name ==='home'){
+//             router.push({name:'searchResults'})
+//         }
+//         return data
+//     }else{
+//         appStore.setLastSavedSearch({...filters.value,hasLastSavedSearch:true})
+//         router.push({name:'signin'})
+//     }
+
+// }
 
 
 defineExpose({

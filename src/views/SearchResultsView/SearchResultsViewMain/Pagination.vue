@@ -1,7 +1,8 @@
 <template>
     <div class="mt-[56px] flex items-center justify-center">
         <button @click="goToPage(currentPage - 1)" :disabled="currentPage === 1"
-            class="btn   bg-[#fff] cursor-pointer "><svg width="68" height="68" viewBox="0 0 68 68" fill="none"
+            class="group bg-[#fff] cursor-pointer  disabled:cursor-not-allowed">
+            <svg width="68" height="68" viewBox="0 0 68 68" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
                 <g filter="url(#filter0_d_25_579)">
                     <path
@@ -9,7 +10,7 @@
                         fill="white" shape-rendering="crispEdges" />
                     <path fill-rule="evenodd" clip-rule="evenodd"
                         d="M32.7524 29.7831L37.2502 25.8391C37.5831 25.5468 37.5831 25.0754 37.2502 24.7831C37.0916 24.6435 36.8752 24.565 36.6496 24.565C36.4239 24.565 36.2075 24.6435 36.0489 24.7831L30.9504 29.2544C30.6165 29.5463 30.6165 30.0184 30.9504 30.3104L36.0487 34.7816C36.2075 34.9212 36.4239 34.9998 36.6496 34.9998C36.8752 34.9998 37.0916 34.9212 37.2504 34.7816C37.5831 34.4893 37.5831 34.0178 37.25 33.7256L32.7524 29.7831Z"
-                        fill="" class="fill-[#C5C5C5] hover:fill-[#2F80ED] pt-3"  />
+                        fill="" class="fill-[#C5C5C5] hover:fill-[#2F80ED] group-hover:fill-[#2F80ED]"  />
                 </g>
                 <defs>
                     <filter id="filter0_d_25_579" x="0" y="0" width="68" height="68" filterUnits="userSpaceOnUse"
@@ -32,7 +33,7 @@
             {{ page }}
         </button>
         <button @click="goToPage(currentPage + 1)" :disabled="currentPage === totalPages"
-            class=" bg-[#fff] cursor-pointer pt-3"><svg width="68" height="68" viewBox="0 0 68 68" fill="none"
+            class="group bg-[#fff] cursor-pointer disabled:cursor-not-allowed pt-3"><svg width="68" height="68" viewBox="0 0 68 68" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
                 <g filter="url(#filter0_d_25_592)">
                     <path
@@ -40,7 +41,7 @@
                         fill="white" shape-rendering="crispEdges" />
                     <path fill-rule="evenodd" clip-rule="evenodd"
                         d="M35.2476 29.7831L30.7498 25.8391C30.4169 25.5468 30.4169 25.0754 30.7498 24.7831C30.9084 24.6435 31.1248 24.565 31.3504 24.565C31.5761 24.565 31.7925 24.6435 31.9511 24.7831L37.0496 29.2544C37.3835 29.5463 37.3835 30.0184 37.0496 30.3104L31.9513 34.7816C31.7925 34.9212 31.5761 34.9998 31.3504 34.9998C31.1248 34.9998 30.9084 34.9212 30.7496 34.7816C30.4169 34.4893 30.4169 34.0178 30.75 33.7256L35.2476 29.7831Z"
-                        fill="" class="fill-[#C5C5C5] hover:fill-[#2F80ED]" />
+                        fill="" class="fill-[#C5C5C5] hover:fill-[#2F80ED] group-hover:fill-[#2F80ED]" />
                 </g>
                 <defs>
                     <filter id="filter0_d_25_592" x="0" y="0" width="68" height="68" filterUnits="userSpaceOnUse"
@@ -69,14 +70,6 @@ let props = defineProps({
 
 
 
-console.log(props.currentPage)
-let activePageStyling = computed(() => (p) => props.currentPage === p ? 'bg-[#2F80ED] text-white' : '')
+let activePageStyling = computed(() => (p) => props.currentPage === p ? 'bg-blue-1 text-white' : '')
 
 </script>
-
-<style scoped>
-.btn:disabled {
-    cursor: not-allowed;
-}
-
-</style>

@@ -28,9 +28,11 @@
 import BaseButton from '@/components/UI/BaseButton.vue';
 import { ref } from 'vue';
 import {createOrRenewToken} from '../../helpers/utils'
+import { useRouter } from 'vue-router';
+
+let router=useRouter()
 
 let passwordInput = ref(null)
-
 
 let email = ref('')
 let emailError = ref(null)
@@ -67,6 +69,7 @@ let validateInputs = (e) => {
 let submitForm = () => {
     if (!(emailError.value || passwordError.value)) {
         createOrRenewToken()
+        router.push({name:'searchResults'})
     }
 }
 </script>

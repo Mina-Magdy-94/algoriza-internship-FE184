@@ -54,12 +54,16 @@
 import { computed, ref } from 'vue';
 import BaseButton from '../UI/BaseButton'
 import { useRoute } from 'vue-router';
+import {checkTokenValidity} from '../../helpers/utils'
+
+
+
 let props = defineProps({
     'isRenderHeaderLogoOnly': Boolean
 })
 const NAVIGATION_LINKS = ref(['Home', 'Discover', 'Activities', 'About', 'Contact'])
 const showDropDown = ref(false)
-const hasToken = ref(false)
+const hasToken = computed(checkTokenValidity)
 let setShowDropDown = () => showDropDown.value = !showDropDown.value
 let route = useRoute()
 let specialStyleForSearchResultPage = computed(() => {

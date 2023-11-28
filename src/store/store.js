@@ -8,7 +8,7 @@ export const useAppStore = defineStore('appStore', {
             departure_date: null,
             adults: null,
             room_qty: null,
-            hasLastSavedSearch: false
+            // hasLastSavedSearch: false
         }
     }),
     actions:{
