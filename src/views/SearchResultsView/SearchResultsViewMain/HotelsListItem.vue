@@ -40,10 +40,10 @@
             <div class="flex flex-nowrap justify-between">
                 <BaseButton button-text="See availability" class="py-[10px] px-[18px]" />
                 <div class="flex flex-col items-end w-[143px] h-[47px]">
-                    <div :class="`flex flex-nowrap w-fit max-w-[88px] items-center ${priceDynamicStyling}`">
+                    <div :class="`flex flex-nowrap w-fit max-w-[105px] items-center ${priceDynamicStyling}`">
                         <template v-if="strikethroughPrice !== 0">
                             <span
-                                class="w-fit mr-[8px] h-[17px] text-[14px] font-medium leading-normal tracking-[0.14px] text-[#EB5757] line-through text-left">
+                                class="w-fit h-[17px] text-[14px] font-medium leading-normal tracking-[0.14px] text-[#EB5757] line-through text-left">
                                 ${{ strikethroughPrice }}
                             </span>
                         </template>

@@ -7,7 +7,6 @@ export const getDataAndSaveData = () => {
             apiFunctionToCall(functionArgument).then(res => {
                 const dataArray = res.data.data
                 console.log(dataArray)
-                console.log('hi')
                 if (filterFunction) {
                     const filteredData = dataArray.filter(filterFunction)
                     dataToRetrieve.value = filteredData

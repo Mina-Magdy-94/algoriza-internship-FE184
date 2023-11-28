@@ -56,7 +56,7 @@ let handleSortChange = async (e) => {
     let sortBy = e.target.value
     let stringifiedSearchParam = localStorage.getItem('searchParameters')
     let parsedSearchParameters = JSON.parse(stringifiedSearchParam)
-    let newSearchParameters = { ...parsedSearchParameters, sort_by: sortBy }
+    let newSearchParameters = { ...parsedSearchParameters, sort_by: sortBy ,page_number: '1'}
     localStorage.setItem('searchParameters', JSON.stringify(newSearchParameters))
     console.log({newSearchParameters})
     const response = await searchApis.searchHotels(newSearchParameters)

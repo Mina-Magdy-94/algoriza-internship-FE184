@@ -61,7 +61,8 @@ let search = async () => {
     let arrival_date = filters.value.arrival_date && filters.value.arrival_date.toISOString().split("T")[0]
     let departure_date = filters.value.departure_date && filters.value.departure_date.toISOString().split("T")[0]
     appStore.setLastSavedSearch({ ...filters.value,arrival_date,departure_date })
-    let searchParameters={ ...filters.value,arrival_date,departure_date }
+    let searchParameters={ ...filters.value,arrival_date,departure_date, page_number: '1', }
+    console.log(searchParameters)
     let StringifiedSearchParameters=JSON.stringify(searchParameters)
     localStorage.setItem('searchParameters',StringifiedSearchParameters)
 

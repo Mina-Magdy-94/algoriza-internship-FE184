@@ -8,6 +8,7 @@ export const useAppStore = defineStore('appStore', {
             departure_date: null,
             adults: null,
             room_qty: null,
+            page_number: '1',
             // hasLastSavedSearch: false
         }
     }),

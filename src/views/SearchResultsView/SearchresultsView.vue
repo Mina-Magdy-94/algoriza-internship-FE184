@@ -52,15 +52,13 @@ let setHotelsDataAndSaveInLocalStorage=async()=>{
     let parsedSearchParams=getSearchParametersFromLocalStorage()
     let response = await searchApis.searchHotels(parsedSearchParams)
         let hotelsData = response.data.data
-        console.log(hotelsData)
+
         hotelsFromApiRequests.value = hotelsData.hotels
         hotelsMetaData.value = hotelsData.meta
         let hotelsDataToSetInLocalStorage = JSON.stringify(hotelsData)
         localStorage.setItem('hotelsData', hotelsDataToSetInLocalStorage)
 }
 
-// let searchParams=ref(localStorage.getItem('searchParameters'))
-// let parsedSearchParams=ref(JSON.parse(searchParams.value))
 
 
 let renderHotelsData=()=>{
@@ -77,7 +75,7 @@ let renderHotelsData=()=>{
 
 onMounted(() => {
 
-    renderHotelsData()
+    setHotelsDataAndSaveInLocalStorage()
 
 
     // getAndSave('hotelsData',searchApis.searchHotels,parsedSearchParams)

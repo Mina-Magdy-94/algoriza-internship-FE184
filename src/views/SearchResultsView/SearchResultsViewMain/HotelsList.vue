@@ -1,9 +1,8 @@
 <template>
-    <div class="w-full h-fit flex flex-col gap-6 p-0">
-        <!-- <template v-if="props.hotelsFromApiRequests"> -->
+    <div class="w-full h-fit flex flex-col gap-6 p-0" v-if="props.hotelsFromApiRequests.length">
             <HotelsListItem v-for="hotel in props.hotelsFromApiRequests.slice(0, 8)" :hotel="hotel" />
-        <!-- </template> -->
     </div>
+    <h3 v-else class="text-xl text-red-500 font-semibold text-center ">Sorry,No Hotels To Show</h3>
 </template>
 
 <script setup>

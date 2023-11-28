@@ -45,6 +45,10 @@ import BaseFilter from './BaseFilter.vue';
 import SwitchButton from './SwitchButton.vue';
 import * as searchApis from '../../../apis/searchApis'
 
+let props = defineProps(({
+    setDataUpdatedToTrue: Function
+}))
+
 let prices = ref([])
 let priceList = [
     { price_min: 0, price_max: 200 },
@@ -80,10 +84,8 @@ let handleSendingInpuData = (e) => {
 let calculateMinAndMaxValues = (pricesArray) => {
     let minPricesForAllCheckedCheckboxs = pricesArray.map(p => p.price_min)
     let price_min = Math.min(...minPricesForAllCheckedCheckboxs) ?? undefined
-    console.log(price_min)
     let maxPricesForAllCheckedCheckboxs = pricesArray.map(p => p.price_max)
     let price_max = Math.max(...maxPricesForAllCheckedCheckboxs) ?? undefined
-    console.log(price_max)
 
     return { price_min, price_max }
 }
@@ -96,37 +98,25 @@ watch(prices, (newPrices, oldPrices) => {
 
     let getPriceFilteredDataFromApi = async () => {
         let { price_min: newprice_min, price_max: newprice_max } = calculateMinAndMaxValues(newPrices)
-        // let { price_min: oldprice_min, price_max: oldprice_max } = calculateMinAndMaxValues(oldPrices)
-        // console.log(newprice_min, newprice_max)
+        let { price_min: oldprice_min, price_max: oldprice_max } = calculateMinAndMaxValues(oldPrices)
 
-        // let minPricesForAllCheckedCheckboxs = newPrices.map(p => p.price_min)
-        // let price_min = Math.min(...minPricesForAllCheckedCheckboxs) || undefined
-        // let maxPricesForAllCheckedCheckboxs = newPrices.map(p => p.price_max)
-        // let price_max = Math.max(...maxPricesForAllCheckedCheckboxs) || undefined
 
-        // if (!(newprice_min === oldprice_min && newprice_max === oldprice_max)) {
-        //     console.log(newprice_min)
-        //     console.log(newprice_max)
-        // let stringifiedSearchParam = localStorage.getItem('searchParameters')
-        // let parsedSearchParameters = JSON.parse(stringifiedSearchParam)
-        // let newSearchParameters = { ...parsedSearchParameters, price_min: newprice_min, newprice_max }
-        // console.log(newSearchParameters)
-        // localStorage.setItem('searchParameters', JSON.stringify(newSearchParameters))
-        // console.log({ newSearchParameters })
-        // const response = await searchApis.searchHotels(newSearchParameters)
-        // const hotelsData = response.data.data
-        // console.log({ hotelsData })
-        // const stringifiedhotelsData = JSON.stringify(hotelsData)
-        // localStorage.setItem('hotelsData', stringifiedhotelsData)
-        // props.setDataUpdatedToTrue()
-        // }
+        if (!(newprice_min === oldprice_min && newprice_max === oldprice_max)) {
+            let stringifiedSearchParam = localStorage.getItem('searchParameters')
+            let parsedSearchParameters = JSON.parse(stringifiedSearchParam)
+            let newSearchParameters = { ...parsedSearchParameters, price_min: newprice_min,price_max: newprice_max,page_number: '1' }
+            localStorage.setItem('searchParameters', JSON.stringify(newSearchParameters))
+            const response = await searchApis.searchHotels(newSearchParameters)
+            const hotelsData = response.data.data
+            const stringifiedhotelsData = JSON.stringify(hotelsData)
+            localStorage.setItem('hotelsData', stringifiedhotelsData)
+            props.setDataUpdatedToTrue()
+        }
     }
     let timeout = setTimeout(getPriceFilteredDataFromApi, 500);
     previousTimeoutForDebounce = timeout
 })
 
-let props = defineProps(({
-    setDataUpdatedToTrue: Function
-}))
+
 
 </script>
