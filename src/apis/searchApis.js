@@ -27,7 +27,9 @@ let searchHotels=(filters)=>{
             adults: filters.adults,
             room_qty: filters.room_qty,
             page_number: filters.page_number || '1',
-            sort_by:filters.sort_by
+            sort_by:filters.sort_by,
+            price_min:filters.price_min,
+            price_max:filters.price_max
         }
     })
 }

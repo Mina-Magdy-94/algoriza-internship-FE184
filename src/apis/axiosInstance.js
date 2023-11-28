@@ -19,7 +19,8 @@ axiosInstance.interceptors.request.use((req) => {
         if (isValidToken) {
             return req
         } else {
-            localStorage.clear()
+            // localStorage.clear()
+            localStorage.removeItem('auth')
             location.pathname = '/signin'
         }
     }

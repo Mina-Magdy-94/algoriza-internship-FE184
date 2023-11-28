@@ -1,17 +1,17 @@
 <template>
-    <div class="flex flex-col justify-center bg-white rounded-lg  min-h-[64px] max-h-[90px] box-border p-2 shadow">
-        <form class="z-1 text-[#4f4f4f]  flex  justify-evenly items-center text-[13px] leading-5 ">
-            <SearchFormSelectInput v-model="filters.dest_id" />
-            <SearchFormDatePickerInput placeholder="Check in date" :min-date="tomorrowDate" v-model="filters.arrival_date"
-                :max-date="maxCheckInDate" />
-            <SearchFormDatePickerInput placeholder="Check out date" :min-date="minimumCheckOutDate"
-                v-model="filters.departure_date" />
-            <SearchFormTextInput src="userIcon.svg" placeholder="Guests" v-model="filters.adults" />
-            <SearchFormTextInput src="roomsIcon.svg" placeholder="Rooms" v-model="filters.room_qty" />
-            <BaseButton button-text="Search" class="w-[134px]" @click.prevent="search()" />
-        </form>
-        <p v-if="error" class="text-sm text-center text-red-400">error</p>
-    </div>
+        <div class="flex flex-col justify-center bg-white rounded-lg  min-h-[64px] max-h-[90px] box-border p-2 shadow">
+            <form class="z-1 text-[#4f4f4f]  flex  justify-evenly items-center text-[13px] leading-5 ">
+                <SearchFormSelectInput v-model="filters.dest_id" />
+                <SearchFormDatePickerInput placeholder="Check in date" :min-date="tomorrowDate" v-model="filters.arrival_date"
+                    :max-date="maxCheckInDate" />
+                <SearchFormDatePickerInput placeholder="Check out date" :min-date="minimumCheckOutDate"
+                    v-model="filters.departure_date" />
+                <SearchFormTextInput src="userIcon.svg" placeholder="Guests" v-model="filters.adults" />
+                <SearchFormTextInput src="roomsIcon.svg" placeholder="Rooms" v-model="filters.room_qty" />
+                <BaseButton button-text="Search" class="w-[134px]" @click.prevent="search()" />
+            </form>
+            <p v-if="error" class="text-sm text-center text-red-400">error</p>
+        </div>
 </template>
 
 <script setup>
