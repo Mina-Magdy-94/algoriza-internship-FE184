@@ -9,7 +9,7 @@
         </div>
         <!-- The container of all search results hotels list -->
         <HotelsList :hotels-from-api-requests="props.hotelsFromApiRequests" />
-        <Pagination :currentPage="currentPage" :set-current-page="setCurrentPage" :totalPages="totalPages" :search-parameters="searchParameters" :set-data-updated-to-true="setDataUpdatedToTrue"/>
+        <Pagination :currentPage="currentPage" :set-current-page="setCurrentPage" :totalPages="5" :set-data-updated-to-true="setDataUpdatedToTrue"/>
     </section>
 </template>
 
@@ -19,7 +19,7 @@ import { onMounted,ref } from 'vue';
 import HotelsList from './HotelsList.vue';
 import Pagination from './Pagination.vue';
 import SearchResultsViewMainSortBy from './SearchResultsViewMainSortBy.vue';
-import {getSearchParametersFromLocalStorage} from '../../../helpers/utils'
+import {getDataFromLocalStorage} from '../../../helpers/utils'
 
 let props=defineProps({
     hotelsFromApiRequests:Array,
@@ -46,10 +46,11 @@ let getMetaDataFromLocalStorage=()=>{
 }
 
 onMounted(()=>{
-    searchParameters.value=getSearchParametersFromLocalStorage()
-    currentPage.value =parseInt(searchParameters.value.page_number) 
-    let {meta}=getMetaDataFromLocalStorage()
-    totalPages.value=meta.length? Math.ceil(parseInt(meta[0].title)/20) :1
+    searchParameters.value=getDataFromLocalStorage('searchParameters')
+    currentPage.value =parseInt(searchParameters.value?.page_number) 
+    console.log(props.hotelsMetaData)
+    // totalPages.value=meta.length? Math.ceil(parseInt(meta[0].title)/20) :1
+    // console.log(totalPages.value)
 })
 
 

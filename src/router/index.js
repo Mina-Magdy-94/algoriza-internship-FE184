@@ -3,6 +3,7 @@ import TheLayout from '..//components/Layout/TheLayout.vue'
 import HomeView from '../views/HomeView/HomeView.vue'
 import SignInView from '../views/SignInView/SignInView.vue'
 import SearchResults from '../views/SearchResultsView/SearchresultsView.vue'
+import HotelDetailsView from '../views/HotelDetailsView/HotelDetailsView.vue'
 
 const routes = [
   {
@@ -23,6 +24,12 @@ const routes = [
         path: '/searchResults',
         name: 'searchResults',
         component: SearchResults
+      },
+      {
+        path:'/hotelDetails/:id',
+        name:'hotelDetails',
+        component:HotelDetailsView
+
       }
     ]
     // route level code-splitting

@@ -29,6 +29,7 @@ import BaseButton from '@/components/UI/BaseButton.vue';
 import { ref } from 'vue';
 import {createOrRenewToken} from '../../helpers/utils'
 import { useRouter } from 'vue-router';
+import { isAuthorized } from '@/store/auth';
 
 let router=useRouter()
 
@@ -69,6 +70,7 @@ let validateInputs = (e) => {
 let submitForm = () => {
     if (!(emailError.value || passwordError.value)) {
         createOrRenewToken()
+        isAuthorized.value=true
         router.push({name:'searchResults'})
     }
 }

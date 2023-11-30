@@ -20,8 +20,8 @@ export const getDataAndSaveData = () => {
             })
         } else {
             let StringifiedData = localStorage.getItem(itemKeyInLocalStorage)
-            let parsedSortOptions = JSON.parse(StringifiedData)
-            dataToRetrieve.value = parsedSortOptions
+            let parsedData = JSON.parse(StringifiedData)
+            dataToRetrieve.value = parsedData
         }
     }
     return { dataToRetrieve, getAndSave }

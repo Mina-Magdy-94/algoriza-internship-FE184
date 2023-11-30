@@ -1,17 +1,17 @@
 <template>
-        <div class="flex flex-col justify-center bg-white rounded-lg  min-h-[64px] max-h-[90px] box-border p-2 shadow">
-            <form class="z-1 text-[#4f4f4f]  flex  justify-evenly items-center text-[13px] leading-5 ">
-                <SearchFormSelectInput v-model="filters.dest_id" />
-                <SearchFormDatePickerInput placeholder="Check in date" :min-date="tomorrowDate" v-model="filters.arrival_date"
-                    :max-date="maxCheckInDate" />
-                <SearchFormDatePickerInput placeholder="Check out date" :min-date="minimumCheckOutDate"
-                    v-model="filters.departure_date" />
-                <SearchFormTextInput src="userIcon.svg" placeholder="Guests" v-model="filters.adults" />
-                <SearchFormTextInput src="roomsIcon.svg" placeholder="Rooms" v-model="filters.room_qty" />
-                <BaseButton button-text="Search" class="w-[134px]" @click.prevent="search()" />
-            </form>
-            <p v-if="error" class="text-sm text-center text-red-400">error</p>
-        </div>
+    <div class="flex flex-col justify-center bg-white rounded-lg  min-h-[64px] max-h-[90px] box-border p-2 shadow">
+        <form class="z-1 text-[#4f4f4f]  flex  justify-evenly items-center text-[13px] leading-5 " @submit.prevent="search()">
+            <SearchFormSelectInput v-model="filters.dest_id" />
+            <SearchFormDatePickerInput placeholder="Check in date" :min-date="tomorrowDate" v-model="filters.arrival_date"
+                :max-date="maxCheckInDate" />
+            <SearchFormDatePickerInput placeholder="Check out date" :min-date="minimumCheckOutDate"
+                v-model="filters.departure_date" />
+            <SearchFormTextInput src="userIcon.svg" placeholder="Guests" v-model="filters.adults" />
+            <SearchFormTextInput src="roomsIcon.svg" placeholder="Rooms" v-model="filters.room_qty" />
+            <BaseButton button-text="Search" class="w-[134px]"  />
+        </form>
+        <p v-if="error" class="text-sm text-center text-red-400">error</p>
+    </div>
 </template>
 
 <script setup>
@@ -25,6 +25,8 @@ import { useRouter, useRoute } from 'vue-router';
 import * as searchApis from '@/apis/searchApis';
 import { checkTokenValidity } from '@/helpers/utils';
 import { useAppStore } from '../../store/store'
+import {checkInLocalStorage,getDataFromLocalStorage,setDataInLocalStorage} from '../../helpers/utils'
+
 
 let appStore = useAppStore()
 
@@ -60,22 +62,20 @@ let error = ref(null)
 let search = async () => {
     let arrival_date = filters.value.arrival_date && filters.value.arrival_date.toISOString().split("T")[0]
     let departure_date = filters.value.departure_date && filters.value.departure_date.toISOString().split("T")[0]
-    appStore.setLastSavedSearch({ ...filters.value,arrival_date,departure_date })
-    let searchParameters={ ...filters.value,arrival_date,departure_date, page_number: '1', }
-    console.log(searchParameters)
-    let StringifiedSearchParameters=JSON.stringify(searchParameters)
-    localStorage.setItem('searchParameters',StringifiedSearchParameters)
 
+        let searchParameters = {...filters.value, arrival_date, departure_date, page_number: '1' }
+        console.log({searchParameters})
+        setDataInLocalStorage('searchParameters',searchParameters)
 
-    let isValidToken = checkTokenValidity()
+        let isValidToken = checkTokenValidity()
 
-    if (isValidToken) {
-        if (route.name === 'home') {
-            router.push({ name: 'searchResults' })
+        if (isValidToken) {
+            if (route.name === 'home') {
+                router.push({ name: 'searchResults' })
+            }
+        } else {
+            router.push({ name: 'signin' })
         }
-    } else {
-        router.push({ name: 'signin' })
-    }
 
 }
 
@@ -102,9 +102,9 @@ let search = async () => {
 // }
 
 
-defineExpose({
-    search
-})
+// defineExpose({
+//     search
+// })
 </script>
 
 

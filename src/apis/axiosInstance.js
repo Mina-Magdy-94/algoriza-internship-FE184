@@ -1,5 +1,8 @@
 import axios from "axios";
-import { checkTokenValidity } from "@/helpers/utils";
+import { checkInLocalStorage, checkTokenValidity } from "@/helpers/utils";
+import {isAuthorized} from'../store/auth'
+
+
 const baseURL = 'https://booking-com15.p.rapidapi.com/api/v1/hotels/'
 
 
@@ -21,7 +24,11 @@ axiosInstance.interceptors.request.use((req) => {
         } else {
             // localStorage.clear()
             localStorage.removeItem('auth')
-            location.pathname = '/signin'
+            isAuthorized.value=false
+            // location.pathname = '/signin'
+            return req
+  
         }
     }
 })
+

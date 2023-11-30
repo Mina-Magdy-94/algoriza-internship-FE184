@@ -7,7 +7,7 @@
             <select name="sorting" id="sorting" @change="handleSortChange"
                 class="text-[#333] text-[14px] font-normal leading-normal tracking-[0.28px] border-none  outline-none">
                 <option :value="'default option'" @click="(e) => console.log(e.target.value)" disabled selected hidden>
-                    {{ dataToRetrieve.length && dataToRetrieve[0].title }}</option>
+                    {{ dataToRetrieve?.length && dataToRetrieve[0].title }}</option>
                 <option v-for="option in dataToRetrieve" :value="option.id" @click="(e) => console.log(e.target.value)">
                     {{ option.title }}</option>
             </select>
@@ -20,6 +20,7 @@ import * as searchApis from '../../../apis/searchApis'
 import { useAppStore } from '../../../store/store'
 import { getDataAndSaveData } from '../../../helpers/getAndSaveDataInLocalStorage'
 import { ref, onMounted } from 'vue'
+import * as utils from '../../../helpers/utils'
 
 
 
@@ -49,8 +50,10 @@ let store = useAppStore()
 
 
 const { dataToRetrieve, getAndSave } = getDataAndSaveData()
+let searchParams=ref(utils.getDataFromLocalStorage('searchParameters'))
 
-onMounted(() => getAndSave('sortOptions', searchApis.getSortOptions, { ...store.lastSavedSearch, search_type: 'CITY' }))
+
+onMounted(() => getAndSave('sortOptions', searchApis.getSortOptions, { ...searchParams.value, search_type: 'CITY' }))
 
 let handleSortChange = async (e) => {
     let sortBy = e.target.value

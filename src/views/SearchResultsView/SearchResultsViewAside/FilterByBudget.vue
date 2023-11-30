@@ -44,6 +44,7 @@ import { ref, watch, watchEffect } from 'vue';
 import BaseFilter from './BaseFilter.vue';
 import SwitchButton from './SwitchButton.vue';
 import * as searchApis from '../../../apis/searchApis'
+import * as utils from '../../../helpers/utils'
 
 let props = defineProps(({
     setDataUpdatedToTrue: Function
@@ -69,8 +70,6 @@ let budgetInputs = ref({
     budgetError: null
 })
 
-// let minBudget = ref()
-// let maxBudget = ref()
 
 let handleSendingInpuData = (e) => {
     if (e.target.value && budgetInputs.value.minBudget < budgetInputs.value.maxBudget) {
@@ -95,25 +94,20 @@ let previousTimeoutForDebounce
 watch(prices, (newPrices, oldPrices) => {
     clearTimeout(previousTimeoutForDebounce)
 
-
     let getPriceFilteredDataFromApi = async () => {
         let { price_min: newprice_min, price_max: newprice_max } = calculateMinAndMaxValues(newPrices)
         let { price_min: oldprice_min, price_max: oldprice_max } = calculateMinAndMaxValues(oldPrices)
 
 
         if (!(newprice_min === oldprice_min && newprice_max === oldprice_max)) {
-            let stringifiedSearchParam = localStorage.getItem('searchParameters')
-            let parsedSearchParameters = JSON.parse(stringifiedSearchParam)
-            let newSearchParameters = { ...parsedSearchParameters, price_min: newprice_min,price_max: newprice_max,page_number: '1' }
+            console.log('entered')
+            let searchParameters = utils.getDataFromLocalStorage('searchParameters')
+            let newSearchParameters = { ...searchParameters, price_min: newprice_min,price_max: newprice_max,page_number: '1' }
             localStorage.setItem('searchParameters', JSON.stringify(newSearchParameters))
-            const response = await searchApis.searchHotels(newSearchParameters)
-            const hotelsData = response.data.data
-            const stringifiedhotelsData = JSON.stringify(hotelsData)
-            localStorage.setItem('hotelsData', stringifiedhotelsData)
             props.setDataUpdatedToTrue()
         }
     }
-    let timeout = setTimeout(getPriceFilteredDataFromApi, 500);
+    let timeout = setTimeout(getPriceFilteredDataFromApi, 1000);
     previousTimeoutForDebounce = timeout
 })
 

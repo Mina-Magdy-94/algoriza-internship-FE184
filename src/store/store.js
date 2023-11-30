@@ -10,12 +10,17 @@ export const useAppStore = defineStore('appStore', {
             room_qty: null,
             page_number: '1',
             // hasLastSavedSearch: false
-        }
+        },
+        isAuthorized: false
     }),
-    actions:{
-        setLastSavedSearch(savedSearch){
-            this.lastSavedSearch=savedSearch
+    actions: {
+        setLastSavedSearch(savedSearch) {
+            this.lastSavedSearch = savedSearch
+        },
+        setISAuthorized(authValue) {
+            this.isAuthorized = authValue
         }
-    }
+    },
+
 }
 )

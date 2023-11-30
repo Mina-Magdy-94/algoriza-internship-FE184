@@ -39,28 +39,29 @@ export let checkTokenValidity = () => {
 
 // Hotel Data Fetching Related Utilities
 
-let checkHotelsInLocalStorage = () => {
-    if (localStorage.getItem('hotelsData')) {
+
+
+export let checkInLocalStorage = (dataToCheck) => {
+    if (localStorage.getItem(dataToCheck)) {
         return true
     } else {
         return false
     }
 }
 
-let getHotelsDataFromLocalStorage = () => {
-    let stringifiedHotelsData = localStorage.getItem('hotelsData')
-    let parsedHotelsData = JSON.parse(stringifiedHotelsData)
-    return parsedHotelsData
+export let getDataFromLocalStorage = (storedData) => {
+    let stringifiedData = localStorage.getItem(storedData)
+    let parsedData = JSON.parse(stringifiedData)
+    return parsedData
 }
 
-export let getSearchParametersFromLocalStorage = () => {
-    let searchParameters = localStorage.getItem('searchParameters')
-    let parsedSearchParams = JSON.parse(searchParameters)
-    return parsedSearchParams
+export let setDataInLocalStorage=(key,dataToSet)=>{
+    let StringifiedData=JSON.stringify(dataToSet)
+    localStorage.setItem(key,StringifiedData)
 }
 
 let setHotelsDataAndSaveInLocalStorage = async (hotelsFromApiRequests,hotelsMetaData) => {
-    let parsedSearchParams = getSearchParametersFromLocalStorage()
+    let parsedSearchParams = getDataFromLocalStorage('searchParameters')
     let response = await searchApis.searchHotels(parsedSearchParams)
     let hotelsData = response.data.data
     console.log(hotelsData)
@@ -74,11 +75,11 @@ export let fetchHotelData = () => {
     let hotelsFromApiRequests = ref([])
     let hotelsMetaData = ref([])
 
-    let isHotelsDataInLocalStorage = checkHotelsInLocalStorage()
+    let isHotelsDataInLocalStorage = checkHotelsInLocalStorage('hotelsData')
     if (!isHotelsDataInLocalStorage) {
         setHotelsDataAndSaveInLocalStorage(hotelsFromApiRequests,hotelsMetaData)
     } else {
-        let hotelsDataFromLocalStorage = getHotelsDataFromLocalStorage()
+        let hotelsDataFromLocalStorage = getHotelsDataFromLocalStorage('hotelsData')
         hotelsFromApiRequests.value = hotelsDataFromLocalStorage.hotels
         hotelsMetaData.value = hotelsDataFromLocalStorage.meta
     }

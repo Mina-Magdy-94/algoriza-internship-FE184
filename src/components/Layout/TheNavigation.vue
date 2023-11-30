@@ -1,8 +1,8 @@
 <template>
     <header
-        :class="[`h-18 grid grid-cols-12 justify-between  auto-rows-auto px-[15px] md:px-[30px] lg:px-[100px] mb-3 ${specialStyleForSearchResultPage}`]">
+        :class="`shadow-[0_0_1px_gray] h-18 grid grid-cols-12 justify-between  auto-rows-auto px-[15px] md:px-[30px] lg:px-[100px]  ${specialStyleForSearchResultPage}`">
         <div class="col-span-9 sm:col-span-3 md:col-span-3 xl:col-span-2 flex items-center justify-start">
-            <img v-if="route.name !=='searchResults'" src="../../assets/icons/bxs-plane-alt 1MyDreamPlace.svg" alt="My Dream Place Icon" title="My Dream Place">
+            <img v-if="route.name !=='searchResults'" src="../../assets/icons/bxs-plane-alt.svg" alt="My Dream Place Icon" title="My Dream Place">
             <img v-else src="../../assets/icons/whitePlaneLogo.svg" alt="My Dream Place Icon" title="My Dream Place">
             <p class="text-lg  font-medium leading-5">
                 my Dream Place

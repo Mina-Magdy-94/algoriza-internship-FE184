@@ -38,7 +38,7 @@
             </div>
             <!-- forth row -->
             <div class="flex flex-nowrap justify-between">
-                <BaseButton button-text="See availability" class="py-[10px] px-[18px]" />
+                <BaseButton button-text="See availability" class="py-[10px] px-[18px]" @click="router.push({name:'hotelDetails',params:{id:hotel.property.id}})"/>
                 <div class="flex flex-col items-end w-[143px] h-[47px]">
                     <div :class="`flex flex-nowrap w-fit max-w-[105px] items-center ${priceDynamicStyling}`">
                         <template v-if="strikethroughPrice !== 0">
@@ -62,10 +62,13 @@
 <script setup>
 import BaseButton from '@/components/UI/BaseButton.vue';
 import { computed, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
 
 let props = defineProps({
     hotel: Object
 })
+
+let router=useRouter()
 
 let setDescription = (string) => {
     if (string.length > 120) {
@@ -81,9 +84,6 @@ let hotelName = computed(() => props.hotel.property.name)
 let imgSrc = computed(() => props.hotel.property.photoUrls[0])
 let accessibilityLabel = computed(() => {
     let descriptionArray = props.hotel.accessibilityLabel.split(".")
-    // let descriptionString = descriptionArray.join(" ")
-    // let result= setDescription(descriptionString)
-    // return result
     let description = descriptionArray.join(".")
     return description
 })
@@ -115,5 +115,4 @@ let discount = computed(() => strikethroughPrice.value !== 0 ? Math.round(((stri
 
 let priceDynamicStyling = computed(() => strikethroughPrice.value === 0 ? 'justify-end' : 'justify-between')
 
-// console.log(props.hotel.property.priceBreakdown.benefitBadges)
 </script>

@@ -61,27 +61,23 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed , ref} from 'vue'
 import * as searchApis from '../../../apis/searchApis'
+import * as utils from '../../../helpers/utils'
 let props = defineProps({
     currentPage: Number,
     totalPages: Number,
     setCurrentPage: Function,
     setDataUpdatedToTrue: Function,
-    searchParameters: Object
 })
 
 
+let searchParams=ref(utils.getDataFromLocalStorage('searchParameters'))
+
 let gotToPage = async(page) => {
     props.setCurrentPage(page)
-    let searchParams = props.searchParameters
-    let newSearchParams = { ...searchParams, page_number: page.toString() }
-    // console.log(newSearchParams)
+    let newSearchParams = { ...searchParams.value, page_number: page.toString() }
     localStorage.setItem('searchParameters', JSON.stringify(newSearchParams))
-    const response = await searchApis.searchHotels(newSearchParams)
-    const hotelsData = response.data.data
-    const stringifiedhotelsData = JSON.stringify(hotelsData)
-    localStorage.setItem('hotelsData', stringifiedhotelsData)
     props.setDataUpdatedToTrue()
 }
 

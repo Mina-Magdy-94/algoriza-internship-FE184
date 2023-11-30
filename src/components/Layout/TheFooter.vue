@@ -4,7 +4,7 @@
             <ul class=" p-1 w-full sm:grid lg:grid-cols-[repeat(5,minmax(auto,1fr))] md:grid-cols-[repeat(3,minmax(auto,1fr))] sm:grid-cols-[repeat(2,50%)]  gap-6 justify-between ">
                 <li class="flex flex-col justify-center items-center sm:justify-start sm:items-start">
                     <div class="flex justify-start">
-                        <img src="../../assets/icons/bxs-plane-alt 1MyDreamPlace.svg" alt="My Dream Place Icon"
+                        <img src="../../assets/icons/bxs-plane-alt.svg" alt="My Dream Place Icon"
                             title="My Dream Place">
                         <p class="text-lg font-medium leading-5">
                             my Dream Place

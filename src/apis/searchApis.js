@@ -34,5 +34,24 @@ let searchHotels=(filters)=>{
     })
 }
 
+let getHotelDetails=(filters)=>{
+    return axiosInstance.get('getHotelDetails',{
+        params:{
+            hotel_id: filters.hotel_id,
+            arrival_date: filters.arrival_date,
+            departure_date: filters.departure_date,
+            adults: filters.adults,
+            room_qty: filters.room_qty,
+        }
+    })
+}
+let getDescriptionAndInfo=(filters)=>{
+    return axiosInstance.get('getDescriptionAndInfo',{
+        params:{
+            hotel_id: filters.hotel_id,
+        }
+    })
+}
 
-export{getAllCities,searchHotels,getSortOptions}
+
+export{getAllCities,searchHotels,getSortOptions,getHotelDetails,getDescriptionAndInfo}
