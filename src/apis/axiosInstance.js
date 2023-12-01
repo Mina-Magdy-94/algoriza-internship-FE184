@@ -1,6 +1,6 @@
 import axios from "axios";
 import { checkInLocalStorage, checkTokenValidity } from "@/helpers/utils";
-import {isAuthorized} from'../store/auth'
+import { isAuthorized } from '../store/auth'
 
 
 const baseURL = 'https://booking-com15.p.rapidapi.com/api/v1/hotels/'
@@ -9,7 +9,7 @@ const baseURL = 'https://booking-com15.p.rapidapi.com/api/v1/hotels/'
 export const axiosInstance = axios.create({
     baseURL,
     headers: {
-        'X-RapidAPI-Key': 'ed63304da4mshe099ff961c84e88p1da070jsn777769f54e20',
+        'X-RapidAPI-Key': '4df8d48c40mshebbee8e2b8c572bp1fb00ejsna400b20a979f',
         'X-RapidAPI-Host': 'booking-com15.p.rapidapi.com'
     },
 })
@@ -24,10 +24,10 @@ axiosInstance.interceptors.request.use((req) => {
         } else {
             // localStorage.clear()
             localStorage.removeItem('auth')
-            isAuthorized.value=false
+            isAuthorized.value = false
             // location.pathname = '/signin'
             return req
-  
+
         }
     }
 })

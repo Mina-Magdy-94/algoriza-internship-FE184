@@ -1,5 +1,8 @@
 <template>
   <main>
+    <BaseModal v-if="isModalOpen" :close-modal="closeModal">
+  <WelcomePictureInModal/>
+    </BaseModal>
     <HomeViewHeroImage />
     <section class="px-[105px] translate-y-[-50%]">
       <BaseSearch />
@@ -26,9 +29,14 @@ import HomeViewCardList from './HomeViewCardList.vue';
 import HomeViewTopicsList from './HomeViewTopicsList.vue';
 import HomeViewFinalImage from './HomeViewFinalImage.vue';
 import CovidAlert from '@/components/UI/CovidAlert.vue';
+import BaseModal from '@/components/UI/BaseModal.vue';
+import WelcomePictureInModal from '@/components/UI/WelcomePictureInModal.vue';
 
 // @ is an alias to /src
 
+let isModalOpen=ref(true)
+
+let closeModal=()=>isModalOpen.value=false
 
 let countries = ref([
   { name: 'Australia', description: '2246 properties', imgSrc: 'australia.webp' },

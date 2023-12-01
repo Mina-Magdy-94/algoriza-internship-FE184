@@ -26,12 +26,12 @@
                         {{hotelDetails?.hotel_name}}</h1>
 
                     <div class="flex flex-nowrap flex-start h-[20px]">
-                        <figure v-for="num in randomReviewStarsIfNotFoundInApi">
+                        <figure v-for="num in rating">
                             <img src="../../assets/icons/star.svg" alt="star">
                         </figure>
                         <p
                             class="w-full h-[20px] text-[#4f4f4f] text-[14px] leading-[19.6px] tracking-[0.28px] font-normal ">
-                            {{randomReviewStarsIfNotFoundInApi}}({{hotelDetails?.review_nr}} Reviews)</p>
+                            {{rating}}({{hotelDetails?.review_nr}} Reviews)</p>
                     </div>
 
                     <div class="flex justify-start h-[21px]">
@@ -130,10 +130,10 @@ import { onMounted,ref } from 'vue';
 
 let props=defineProps({
     hotelDetails:Object,
-    hotelDescriptions:Array
+    hotelDescriptions:Array,
+    rating:Number
 })
 
-let randomReviewStarsIfNotFoundInApi=ref()
 
 let facilities=ref([])
 let latitude=ref()
@@ -145,7 +145,6 @@ onMounted(()=>{
     latitude.value=props.hotelDetails.latitude
     longtude.value=props.hotelDetails.longitude
     description.value=props.hotelDescriptions[0].description
-    randomReviewStarsIfNotFoundInApi.value=Math.floor(Math.random() * (5 - 1 + 1)) + 1
 })
 
 </script>

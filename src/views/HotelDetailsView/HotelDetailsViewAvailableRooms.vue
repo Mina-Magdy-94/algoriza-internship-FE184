@@ -21,7 +21,7 @@
                 <img src="../../assets/images/Frameperson.svg" alt="travelling tourist" class="absolute z-10 top-[35px] right-[50px]">
             </div>
 
-            <BaseCard :photo-to-display="firstPhoto">
+            <BaseCard v-for="photo in photosToShow" :photo-to-display="photo">
                 <div class="w-full h-[223px] bg-[#FFF] rounded-b-md p-[20px] pb-[24px]">
                     <h3
                         class="h-[22px] flex flex-col justify-center text-[#1A1A1A] text-[18px] font-medium leading-normal tracking-[0.18px] mb-[18px]">
@@ -33,26 +33,7 @@
                             <p class="text-[14px] font-normal leading-[19.6px] tracking-[0.28]">{{ roomFacility.name }}</p>
                         </div>
                     </div>
-                    <BaseButton button-text="Reserve suite"
-                        class="w-full py-[12px] px-[18px] text-[15px] leading-[20px] tracking-[0.3px]" />
-                </div>
-            </BaseCard>
-
-
-
-            <BaseCard :photo-to-display="secondPhoto">
-                <div class="w-full h-[223px] bg-[#FFF] rounded-b-md p-[20px] pb-[24px]">
-                    <h3
-                        class="h-[22px] flex flex-col justify-center text-[#1A1A1A] text-[18px] font-medium leading-normal tracking-[0.18px] mb-[18px]">
-                        {{name_with_count || 'ordinary bed'}}
-                    </h3>
-                    <div class="flex flex-col justify-between h-[80px] mb-[24px] overflow-auto">
-                        <div class="h-[20px] w-fit max-w-full flex justify-start items-center mb-[3px]" v-for="roomFacility in roomFacilities">
-                            <img src="../../assets/icons/bag-tick.svg" alt="bag" class="mr-[10px]">
-                            <p class="text-[14px] font-normal leading-[19.6px] tracking-[0.28]">{{roomFacility.name}}</p>
-                        </div>
-                    </div>
-                    <BaseButton button-text="Reserve suite"
+                    <BaseButton button-text="Reserve suite" @click="router.push({name:'checkout'})"
                         class="w-full py-[12px] px-[18px] text-[15px] leading-[20px] tracking-[0.3px]" />
                 </div>
             </BaseCard>
@@ -64,10 +45,13 @@
 import BaseButton from '@/components/UI/BaseButton.vue';
 import BaseCard from '../../components/UI/BaseCard.vue'
 
-import { computed, onMounted } from 'vue'
+import { computed } from 'vue'
+import { useRouter } from 'vue-router';
 let props = defineProps({
     hotelDetails: Object
 })
+
+let router=useRouter()
 
 let rooms=computed(()=>{
     return props.hotelDetails.rooms
@@ -84,6 +68,8 @@ let firstPhoto = computed(() => {
 let secondPhoto = computed(() => {
     return photos.value[1].url_max750
 })
+
+let photosToShow=computed(()=>[firstPhoto.value,secondPhoto.value])
 
 let roomFacilities=computed(()=>{
     let firstKeyOfRoomObject = Object.values(rooms.value)[0]
@@ -102,12 +88,4 @@ let name_with_count=computed(()=>{
     }
 })
 
-
-onMounted(()=>{
-    console.log(props.hotelDetails)
-})
-
-// bed_configurations[0].bed_types[0].name_with_count
-// bed_configurations[0].bed_types[0].description
-// bed_configurations[0].bed_types[0].name_with_count
 </script>

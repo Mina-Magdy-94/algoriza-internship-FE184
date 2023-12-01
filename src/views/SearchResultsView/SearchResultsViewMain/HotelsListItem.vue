@@ -38,7 +38,8 @@
             </div>
             <!-- forth row -->
             <div class="flex flex-nowrap justify-between">
-                <BaseButton button-text="See availability" class="py-[10px] px-[18px]" @click="router.push({name:'hotelDetails',params:{id:hotel.property.id}})"/>
+                <!-- The ApI "hotel details doesn't provide the "rating" so I sent it as a param to the "hotelDetails" page instead of using static ot dummy data-->
+                <BaseButton button-text="See availability" class="py-[10px] px-[18px]" @click="router.push({name:'hotelDetails',params:{id:hotel.property.id,rating:reviewScore}})"/>
                 <div class="flex flex-col items-end w-[143px] h-[47px]">
                     <div :class="`flex flex-nowrap w-fit max-w-[105px] items-center ${priceDynamicStyling}`">
                         <template v-if="strikethroughPrice !== 0">

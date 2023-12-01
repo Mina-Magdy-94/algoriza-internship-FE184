@@ -1,0 +1,177 @@
+<template>
+        <div class="w-[810px] rounded-md">
+            <!-- first card -->
+            <CheckOutViewCard img-src="../../assets/icons/security-user.svg" title="Room 1"
+                subtitle="2 adults, 1 double bed and 1 twin bed, Non-smoking" styling-of-title="text-[#FFFFFF]">
+                <div class="p-[32px] pb-[40px] ">
+                    <div class="w-[500px] h-[196px] flex flex-col justify-between">
+                        <!-- first row -->
+                        <div class="flex justify-between">
+                            <div class="w-[240px] h-[68px] flex flex-col justify-between rounded-[4px]">
+                                <label for=""
+                                    class="text-[#181818] text-[14px] font-semibold leading-[19.6px] tracking-[0.28px]">First
+                                    name</label>
+                                <input type="text"
+                                    class="rounded-[4px] bg-[#F2F2F2] flex items-center p-[12px] pt-[11px] outline-none focus:bg-[#FFF] focus:border-[1px] hover-border-solid focus:border-blue-1">
+                            </div>
+                            <div class="w-[240px] h-[68px] flex flex-col justify-between rounded-[4px]">
+                                <label for=""
+                                    class="text-[#181818] text-[14px] font-semibold leading-[19.6px] tracking-[0.28px]">Last
+                                    name</label>
+                                <input type="text"
+                                    class="rounded-[4px] bg-[#F2F2F2] flex items-center p-[12px] pt-[11px] outline-none focus:bg-[#FFF] focus:border-[1px] hover-border-solid focus:border-blue-1">
+                            </div>
+                        </div>
+                        <!-- second row -->
+                        <div class="flex justify-between">
+                            <div class="w-[150px] h-[68px] flex flex-col justify-between rounded-[4px] relative">
+                                <label for=""
+                                    class="text-[#181818] text-[14px] font-semibold leading-[19.6px] tracking-[0.28px]">First
+                                    name</label>
+                                <select disabled
+                                    class="rounded-[4px] bg-[#F2F2F2] flex items-center p-[12px] pl-[48px] pt-[11px] outline-none focus:bg-[#FFF] focus:border-[1px] hover-border-solid focus:border-blue-1">
+                                    <option value="+20">+02</option>
+                                </select>
+                                <img src="../../assets/icons/EG-Egypt-Flag-icon.webp" alt="Eg Flag"
+                                    class="absolute top-[32px] left-[12px] w-[24px] h-[24px]">
+                            </div>
+                            <div class="w-[338px] h-[68px] flex flex-col justify-end rounded-[4px]">
+                                <input type="number"
+                                    class="rounded-[4px] bg-[#F2F2F2] flex items-center p-[12px] pt-[11px] outline-none focus:bg-[#FFF] focus:border-[1px] hover-border-solid focus:border-blue-1">
+                            </div>
+                        </div>
+                        <!-- third row -->
+                        <div class="h-[20px] flex justify-start">
+                            <input type="checkbox" id="recieveAlerts">
+                            <label for="reciveAlerts"
+                                class="text-[#333] text-[14px] font-normal leading-normal tracking-[0.28px]">Receive text
+                                alerts about this trip.</label>
+                        </div>
+                    </div>
+                </div>
+            </CheckOutViewCard>
+
+            <!-- second card -->
+            <CheckOutViewCard img-src="../../assets/icons/card-tick 1.svg" title="Payment options"
+                styling-of-slot-root="pt-0 h-fit" styling-of-title="text-[#FFFFFF]">
+                <!-- tab -->
+                <div
+                    class="background: linear-gradient(180deg, rgba(244, 244, 244, 0.00) 0%, #FFF 100%); text-[14px] font-normal leading-normal tracking-[0.28px] text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700 mb-[32px]">
+                    <ul class="flex flex-wrap -mb-px">
+                        <li class="me-2">
+                            <!-- todo change anchor tag to router-link -->
+                            <a href="#"
+                                class="inline-block p-3 text-blue-1 border-b-[3px] border-blue-1 rounded-t-lg active dark:text-blue-1 dark:border-blue-1">Debit/Credit
+                                Card</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- payment options -->
+                <section class="mb-[26px]">
+                    <div class=" flex justify-start">
+                        <img src="../../assets/icons/image 6.svg" alt="mastercard" class="m6-[6px]">
+                        <img src="../../assets/icons/image 7.svg" alt="visa" class="m6-[6px]">
+                        <img src="../../assets/icons/image 8.svg" alt="Am express" class="m6-[6px]">
+                        <img src="../../assets/icons/image 10.svg" alt="Discover" class="m6-[6px]">
+                    </div>
+                </section>
+
+                <!-- inputs container -->
+                <section class="h-[330px] w-[536px] flex flex-col justify-between">
+                    <!-- first input -->
+                    <div class="h-[68px] flex flex-col justify-between">
+                        <label for=""
+                            class="h-[20px] text-[#181818] text-[14px] font-semibold leading-[19.6px] tracking-[0.28px]">Name
+                            on card</label>
+                        <div class="h-[68px] flex justify-between items-center">
+                            <input type="text"
+                                class="h-[44px] w-[500px] p-[12px] pt-[11px] bg-[#F2F2F2] rounded-md outline-none focus:bg-[#FFF] focus:border-[1px] hover-border-solid focus:border-blue-1">
+                            <img src="../../assets/icons/right-circle.svg" alt="valid icon" class="w-[20px] h-[20px]">
+                        </div>
+                    </div>
+                    <!-- second input -->
+                    <div class="h-[68px] flex flex-col justify-between">
+                        <label for=""
+                            class="h-[20px] text-[#181818] text-[14px] font-semibold leading-[19.6px] tracking-[0.28px]">Debit/Credit
+                            card number</label>
+                        <div class="h-[68px] flex justify-between items-center">
+                            <input type="text"
+                                class="h-[44px] w-[500px] p-[12px] pt-[11px] bg-[#F2F2F2] rounded-md outline-none focus:bg-[#FFF] focus:border-[1px] hover-border-solid focus:border-blue-1">
+                            <img src="../../assets/icons/right-circle.svg" alt="valid icon" class="w-[20px] h-[20px]">
+                        </div>
+                    </div>
+                    <!-- third row -->
+                    <div class="h-[66px] flex flex-col justify-between">
+                        <label for=""
+                            class="h-[20px] text-[#181818] text-[14px] font-semibold leading-[19.6px] tracking-[0.28px]">Debit/Credit
+                            card number</label>
+                        <div class="h-[42px] flex justify-start items-center">
+                            <input type="text"
+                                class="h-[42px] w-[150px] p-[12px] pt-[11px] bg-[#F2F2F2] rounded-md outline-none focus:bg-[#FFF] focus:border-[1px] hover-border-solid focus:border-blue-1 mr-[12px]">
+                            <input type="text"
+                                class="h-[42px] w-[150px] p-[12px] pt-[11px] bg-[#F2F2F2] rounded-md outline-none focus:bg-[#FFF] focus:border-[1px] hover-border-solid focus:border-blue-1 mr-[16px]">
+                            <img src="../../assets/icons/right-circle.svg" alt="valid icon" class="w-[20px] h-[20px]">
+                        </div>
+                    </div>
+                    <!-- forth row -->
+                    <div class="h-[68px] flex justify-between items-center">
+                        <div class="w-[240px] h-[68px] flex flex-col justify-between rounded-[4px]">
+                            <label for=""
+                                class="text-[#181818] text-[14px] font-semibold leading-[19.6px] tracking-[0.28px]">First
+                                Security Code</label>
+                            <input type="text"
+                                class="rounded-[4px] bg-[#F2F2F2] flex items-center p-[12px] pt-[11px] outline-none focus:bg-[#FFF] focus:border-[1px] hover-border-solid focus:border-blue-1">
+                        </div>
+                        <div class="w-[240px] h-[68px] flex flex-col justify-between rounded-[4px]">
+                            <label for=""
+                                class="text-[#181818] text-[14px] font-semibold leading-[19.6px] tracking-[0.28px]">First
+                                Billing Zip code</label>
+                            <input type="text"
+                                class="rounded-[4px] bg-[#F2F2F2] flex items-center p-[12px] pt-[11px] outline-none focus:bg-[#FFF] focus:border-[1px] hover-border-solid focus:border-blue-1">
+                        </div>
+                        <img src="../../assets/icons/right-circle.svg" alt="valid icon"
+                            class="w-[20px] h-[20px] relative bottom-[10px] self-end">
+                    </div>
+                </section>
+            </CheckOutViewCard>
+
+            <!-- third card -->
+            <CheckOutViewCard title="Important information about your booking"
+                styling-of-title="bg-[#F2C94C] text-[#333] text-[18px] tracking-[0.18px]" styling-of-slot-root="px-[24px] pt-[32px] pb-[35px] h-[363px]">
+                <article class="w-[762px] mb-[32px] text-[#333] text-[15px] font-normal leading-[22.5px] tracking-[0.3px]">
+                    <ol class="list list-inside list-decimal">
+                        <li> This rate is non-refundable. If you change or cancel your booking you will not get a refund or
+                            credit to
+                            use for a future stay.
+                        </li>
+                        <li>
+                            Stay extensions will require a new reservation.
+                        </li>
+                        <li>
+                            Front desk staff will greet guests on arrival
+                        </li>
+                        <li>
+                            No refunds will be issued for late check-in or early check-out.
+                        </li>
+                    </ol>
+                </article>
+                <p class="text-[#4F4F4F] text-[14px] font-normal leading-[19.6px] tracking-[0.28px] mb-[24px]">
+                    By clicking the button below, I acknowledge that I have reviewed the <span class="text-blue-1 text-[14px] font-normal tracking-[0.2px]">Privacy Statement</span> and have reviewd and accept the <span class="text-blue-1 text-[14px] font-normal tracking-[0.2px]">Rules and Restrictions</span> and <span class="text-blue-1 text-[14px] font-normal tracking-[0.2px]">Terms of Use.</span>
+                </p>
+
+                <BaseButton button-text="Complete Booking" class="text-[15px] leading-[20px] tracking-[0.3px] py-[12px] px-[18px] mb-[21px]"/>
+                <div class="flex justify-start">
+                    <img src="../../assets/icons/lock-circle.svg" alt="lock" class="w-[24px] h-[24px]">
+                    <p class="text-[#4F4F4F] text-[14px] font-normal leading-[19.6px] tracking-[0.28px]">
+                        We use secure transmission and encrypted storage to protect your personal information
+                    </p>
+                </div>
+            </CheckOutViewCard>
+
+        </div>
+</template>
+
+<script setup>
+import CheckOutViewCard from './CheckOutViewCard.vue';
+import BaseButton from '@/components/UI/BaseButton.vue';
+</script>

@@ -3,7 +3,7 @@
         <!-- hotel details top -->
         <HotelDetailsViewTopImages :hotel-details="hotelDetails" />
         <!-- description section -->
-            <HotelDetailsViewOverview v-if="hotelDescriptions" :hotel-details="hotelDetails" :hotel-descriptions="hotelDescriptions" />
+            <HotelDetailsViewOverview v-if="hotelDescriptions" :hotel-details="hotelDetails" :rating="rating" :hotel-descriptions="hotelDescriptions" />
         <!-- available rooms section -->
         <HotelDetailsViewAvailableRooms :hotel-details="hotelDetails" />
         <CovidAlert />
@@ -21,6 +21,7 @@ import { getDataFromLocalStorage } from '../../helpers/utils'
 import * as searchApis from '../../apis/searchApis'
 
 let hotel_id = ref()
+let rating=ref()
 let hotelDetails = ref(null)
 let hotelDescriptions = ref(null)
 let route = useRoute()
@@ -33,6 +34,7 @@ let getDescriptionAndInfo = async() => {
 
 let getHotelDetails = async () => {
     hotel_id.value = route.params.id
+    rating.value=parseInt(route.params.rating)
     let searchParams = getDataFromLocalStorage('searchParameters')
     let { arrival_date, departure_date, room_qty, adults } = searchParams
     if (room_qty && adults) {

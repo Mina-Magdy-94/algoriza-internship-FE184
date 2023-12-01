@@ -51,16 +51,20 @@ export let checkInLocalStorage = (dataToCheck) => {
 
 export let getDataFromLocalStorage = (storedData) => {
     let stringifiedData = localStorage.getItem(storedData)
-    let parsedData = JSON.parse(stringifiedData)
-    return parsedData
+    try {
+        let parsedData = JSON.parse(stringifiedData)
+        return parsedData
+    } catch {
+        return stringifiedData
+    }
 }
 
-export let setDataInLocalStorage=(key,dataToSet)=>{
-    let StringifiedData=JSON.stringify(dataToSet)
-    localStorage.setItem(key,StringifiedData)
+export let setDataInLocalStorage = (key, dataToSet) => {
+    let StringifiedData = JSON.stringify(dataToSet)
+    localStorage.setItem(key, StringifiedData)
 }
 
-let setHotelsDataAndSaveInLocalStorage = async (hotelsFromApiRequests,hotelsMetaData) => {
+let setHotelsDataAndSaveInLocalStorage = async (hotelsFromApiRequests, hotelsMetaData) => {
     let parsedSearchParams = getDataFromLocalStorage('searchParameters')
     let response = await searchApis.searchHotels(parsedSearchParams)
     let hotelsData = response.data.data
@@ -77,11 +81,11 @@ export let fetchHotelData = () => {
 
     let isHotelsDataInLocalStorage = checkHotelsInLocalStorage('hotelsData')
     if (!isHotelsDataInLocalStorage) {
-        setHotelsDataAndSaveInLocalStorage(hotelsFromApiRequests,hotelsMetaData)
+        setHotelsDataAndSaveInLocalStorage(hotelsFromApiRequests, hotelsMetaData)
     } else {
         let hotelsDataFromLocalStorage = getHotelsDataFromLocalStorage('hotelsData')
         hotelsFromApiRequests.value = hotelsDataFromLocalStorage.hotels
         hotelsMetaData.value = hotelsDataFromLocalStorage.meta
     }
-    return {hotelsFromApiRequests,hotelsMetaData}
+    return { hotelsFromApiRequests, hotelsMetaData }
 }

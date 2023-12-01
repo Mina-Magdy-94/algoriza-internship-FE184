@@ -79,6 +79,12 @@ let search = async () => {
 
 }
 
+onMounted(()=>{
+    let searchParams=getDataFromLocalStorage('searchParameters')
+    if(searchParams){
+        filters.value={...filters.value,...searchParams}
+    }
+})
 
 // let search = async() => {
 //     let arrival_date =filters.value.arrival_date && filters.value.arrival_date.toISOString().split("T")[0]
