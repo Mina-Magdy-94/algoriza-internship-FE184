@@ -1,5 +1,5 @@
 <template>
-    <BaseSearch class="mt-[-40px]" />
+    <BaseSearch class="mt-[-40px]"  :function-to-set-hotels-data="setHotelsData"/>
     <section class="mt-[62px] mb-[96px] w-full flex flex-nowrap justify-between" v-if="hotelsFromApiRequests && !loading">
         <SearchResultsViewAside :set-data-updated-to-true="setDataUpdatedToTrue"/>
         <SearchResultsViewMain :hotels-from-api-requests="hotelsFromApiRequests" :hotels-meta-data="hotelsMetaData" :loading="loading" :set-data-updated-to-true="setDataUpdatedToTrue"/>
@@ -27,10 +27,10 @@ let error=ref()
 let loading=ref(false)
 let hotelsFromApiRequests = ref([])
 let hotelsMetaData = ref([])
+let hotelsToShow=ref([])
 
 
-
-let setHotelsDataAndSaveInLocalStorage=async()=>{
+let setHotelsData=async()=>{
     loading.value=true
     let parsedSearchParams=getDataFromLocalStorage('searchParameters')
     try {
@@ -38,6 +38,7 @@ let setHotelsDataAndSaveInLocalStorage=async()=>{
             let hotelsData = response.data.data
             hotelsFromApiRequests.value = hotelsData.hotels
             hotelsMetaData.value = hotelsData.meta
+            hotelsToShow.value=[...hotelsFromApiRequests]
             error.value=null    
     } catch (error) {
         error.value=error
@@ -48,12 +49,12 @@ let setHotelsDataAndSaveInLocalStorage=async()=>{
 
 
 onMounted(async() => {
-    setHotelsDataAndSaveInLocalStorage()
+    setHotelsData()
 })
 
 watch(isDataUpdated,()=>{
     if(isDataUpdated.value===true){
-        setHotelsDataAndSaveInLocalStorage()
+        setHotelsData()
         isDataUpdated.value=false
     }
 })
