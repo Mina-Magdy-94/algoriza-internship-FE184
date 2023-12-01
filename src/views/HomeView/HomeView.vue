@@ -31,9 +31,10 @@ import HomeViewFinalImage from './HomeViewFinalImage.vue';
 import CovidAlert from '@/components/UI/CovidAlert.vue';
 import BaseModal from '@/components/UI/BaseModal.vue';
 import WelcomePictureInModal from '@/components/UI/WelcomePictureInModal.vue';
+import { onMounted } from 'vue';
 
 // @ is an alias to /src
-
+let route=useRoute()
 let isModalOpen=ref(true)
 
 let closeModal=()=>isModalOpen.value=false
@@ -57,4 +58,6 @@ let hotels = ref([
   { name: 'Fireside Dinners', description: '480 properties', imgSrc: 'FiresideDinners.webp' },
   { name: 'Oculous Inn Stay', description: '320 properties', imgSrc: 'OculousInnStay.webp' },
 ])
+
+
 </script>

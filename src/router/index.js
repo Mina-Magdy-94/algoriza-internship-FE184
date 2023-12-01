@@ -14,26 +14,41 @@ const routes = [
       {
         path: '',
         name: 'home',
+        meta:{
+          title:"Home"
+        },
         component: HomeView
       },
       {
         path: '/signin',
         name: 'signin',
+        meta:{
+          title:"Sign In"
+        },
         component: SignInView
       },
       {
         path: '/searchResults',
         name: 'searchResults',
+        meta:{
+          title:"Search Results"
+        },
         component: SearchResults
       },
       {
         path:'/hotelDetails/:id/:rating',
         name:'hotelDetails',
+        meta:{
+        title:"Hotel Details"
+        },
         component:HotelDetailsView
       },
       {
         path:'/checkout',
         name:'checkout',
+        meta:{
+          title:""
+        },
         component:CheckOutView
       }
     ]
@@ -48,6 +63,11 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+})
+
+router.beforeEach((to,from,next)=>{
+  document.title =`My Dream Place | ${to.meta.title}`|| 'My Dream Place'
+  next()
 })
 
 export default router

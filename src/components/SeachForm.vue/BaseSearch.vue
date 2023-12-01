@@ -28,8 +28,6 @@ import { useAppStore } from '../../store/store'
 import {checkInLocalStorage,getDataFromLocalStorage,setDataInLocalStorage} from '../../helpers/utils'
 
 
-let appStore = useAppStore()
-
 let today = ref(new Date())
 const tomorrowDate = new Date(today.value.getFullYear(), today.value.getMonth(), today.value.getDate() + 1)
 const maxCheckInDate = computed(() => {
@@ -64,7 +62,6 @@ let search = async () => {
     let departure_date = filters.value.departure_date && filters.value.departure_date.toISOString().split("T")[0]
 
         let searchParameters = {...filters.value, arrival_date, departure_date, page_number: '1' }
-        console.log({searchParameters})
         setDataInLocalStorage('searchParameters',searchParameters)
 
         let isValidToken = checkTokenValidity()
@@ -76,41 +73,18 @@ let search = async () => {
         } else {
             router.push({ name: 'signin' })
         }
-
 }
 
 onMounted(()=>{
-    let searchParams=getDataFromLocalStorage('searchParameters')
-    if(searchParams){
-        filters.value={...filters.value,...searchParams}
+    if(route.name==='searchResults'){
+        let searchParams=getDataFromLocalStorage('searchParameters')
+        if(searchParams){
+            searchParams.arrival_date=new Date(searchParams.arrival_date)
+            searchParams.departure_date=new Date(searchParams.departure_date)
+            filters.value={...filters.value,...searchParams}
+            console.log(filters.value)
+        }
     }
 })
 
-// let search = async() => {
-//     let arrival_date =filters.value.arrival_date && filters.value.arrival_date.toISOString().split("T")[0]
-//     let departure_date =filters.value.departure_date && filters.value.departure_date.toISOString().split("T")[0]
-
-//     let isValidToken= checkTokenValidity()
-
-//     if(isValidToken){
-//         let results=await  (searchApis.searchHotels({...filters.value,arrival_date,departure_date}))
-//         let data= await results.data
-//         console.log(data.data)
-//         if(route.name ==='home'){
-//             router.push({name:'searchResults'})
-//         }
-//         return data
-//     }else{
-//         appStore.setLastSavedSearch({...filters.value,hasLastSavedSearch:true})
-//         router.push({name:'signin'})
-//     }
-
-// }
-
-
-// defineExpose({
-//     search
-// })
 </script>
-
-

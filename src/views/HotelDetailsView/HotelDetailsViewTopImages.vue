@@ -1,5 +1,5 @@
 <template>
-    <section
+    <section v-if="photos.length"
         class="w-[1240px] h-[452px] mt-[12px] mb-[24px] flex justify-between bg-gradient-to-t from-transparent via-white to-white">
         <div class="rounded-[5px] h-full w-[820px] bg-cover bg-no-repeat grayscale-[50%] "
             :style="{ backgroundImage: `url('${firstPhoto}')` }">
@@ -14,7 +14,7 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 let props = defineProps({
     hotelDetails: Object
 })
@@ -25,13 +25,17 @@ let photos = computed(() => {
     return firstKeyOfRoomObject.photos
 })
 
-let firstPhoto = computed(() => {
-    return photos.value[0].url_max1280
-})
-let secondPhoto = computed(() => {
-    return photos.value[1].url_max750
-})
-let thirdPhoto = computed(() => {
-    return photos.value[2].url_max750
+let firstPhoto = ref()
+let secondPhoto = ref()
+let thirdPhoto = ref()
+
+
+onMounted(()=>{
+    console.log(photos.value.length)
+    if(photos.value.length){
+        firstPhoto.value=photos.value[0].url_max750
+        secondPhoto.value=photos.value[1].url_max750
+        thirdPhoto.value=photos.value[2].url_max750
+    }
 })
 </script>

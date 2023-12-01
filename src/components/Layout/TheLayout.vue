@@ -31,5 +31,4 @@ let stylingOfFooter=computed(()=>{
     return 'bg-[#F4F4F4]'
 })
 
-
 </script>
