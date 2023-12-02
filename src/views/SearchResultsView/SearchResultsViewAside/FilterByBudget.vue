@@ -47,7 +47,8 @@ import * as searchApis from '../../../apis/searchApis'
 import * as utils from '../../../helpers/utils'
 
 let props = defineProps(({
-    setDataUpdatedToTrue: Function
+    setDataUpdatedToTrue: Function,
+    setClientSideFilters:Function
 }))
 
 let prices = ref([])
@@ -105,6 +106,7 @@ watch(prices, (newPrices, oldPrices) => {
             let newSearchParameters = { ...searchParameters, price_min: newprice_min,price_max: newprice_max,page_number: '1' }
             localStorage.setItem('searchParameters', JSON.stringify(newSearchParameters))
             props.setDataUpdatedToTrue()
+            setClientSideFilters({ rating: null, name: null })
         }
     }
     let timeout = setTimeout(getPriceFilteredDataFromApi, 1000);

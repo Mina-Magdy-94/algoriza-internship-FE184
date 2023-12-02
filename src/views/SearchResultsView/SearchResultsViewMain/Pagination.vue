@@ -69,6 +69,7 @@ let props = defineProps({
     totalPages: Number,
     setCurrentPage: Function,
     setDataUpdatedToTrue: Function,
+    setClientSideFilters:Function
 })
 
 
@@ -79,6 +80,8 @@ let gotToPage = async(page) => {
     let newSearchParams = { ...searchParams.value, page_number: page.toString() }
     localStorage.setItem('searchParameters', JSON.stringify(newSearchParams))
     props.setDataUpdatedToTrue()
+    let clientFilter=utils.setDataInLocalStorage('clientFilter',{rating:null,name:null})
+
 }
 
 

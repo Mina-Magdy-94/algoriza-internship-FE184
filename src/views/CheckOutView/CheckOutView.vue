@@ -6,10 +6,10 @@
 
     <section class="flex justify-between mt-[-20px] pb-[141px]">
         <!-- left side -->
-        <CheckOutViewLeftSide/>
+        <CheckOutViewLeftSide :change-modal-state="changeModalState"/>
         <!-- right side -->
         <div class="w-[400px] rounded-md">
-            <BaseCard>
+            <BaseCard photo-to-display="images/house.webp">
                 <div class="h-[220px] p-[20px] bg-[#FFF] rounded-b-md">
                     <h3 class="h-[21px] mb-[18px] text-[#181818] text-[18px] leading-normal tracking-[0.18px]">
                         Lakeside Motel Warefront
@@ -43,6 +43,7 @@
             </CheckOutViewCard>
         </div>
     </section>
+    <BaseModal v-if="isModalOpen" :close-modal="changeModalState"/>
 </template>
 
 
@@ -51,7 +52,12 @@ import CovidAlert from '@/components/UI/CovidAlert.vue';
 import CheckOutViewLeftSide from './CheckOutViewLeftSide.vue';
 import BaseCard from '@/components/UI/BaseCard.vue';
 import CheckOutViewCard from './CheckOutViewCard.vue';
+import BaseModal from '@/components/UI/BaseModal.vue';
+import { ref } from 'vue';
 
+let isModalOpen=ref(false)
+
+let changeModalState=()=>{isModalOpen.value=!isModalOpen;console.log(isModalOpen.value)}
 
 
 </script>

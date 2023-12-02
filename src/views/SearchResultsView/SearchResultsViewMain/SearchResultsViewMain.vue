@@ -1,18 +1,18 @@
 <template>
     <section class="w-[915px] h-fit flex flex-col justify-between ">
         <!-- Head of SearchResultsViewMain -->
-        <div class="flex justify-between flex-nowrap mb-[24px]" v-if="hotelsFromApiRequests.length">
+        <div class="flex justify-between flex-nowrap mb-[24px]" v-if="hotelsToShow.length">
             <h2 class=" w-[504p] h-[32px] font-semibold text-[24px] leading-normal text-[#181818]">
-                {{ hotelsFromApiRequests[0] && hotelsFromApiRequests[0].property.wishlistName }} : {{ hotelsMetaData[0] &&
+                {{ hotelsToShow[0] && hotelsToShow[0].property.wishlistName }} : {{ hotelsMetaData[0] &&
                     hotelsMetaData[0].title }}
                 search results
                 found</h2>
             <SearchResultsViewMainSortBy :set-data-updated-to-true="setDataUpdatedToTrue" />
         </div>
         <!-- The container of all search results hotels list -->
-            <HotelsList :hotels-from-api-requests="props.hotelsFromApiRequests" />
+            <HotelsList :hotels-to-show="hotelsToShow" />
             <Pagination :currentPage="currentPage" :set-current-page="setCurrentPage" :totalPages="5"
-                :set-data-updated-to-true="setDataUpdatedToTrue" />
+                :set-data-updated-to-true="setDataUpdatedToTrue" :set-client-side-filters="setClientSideFilters" />
     </section>
 </template>
 
@@ -21,15 +21,14 @@
 import { onMounted, ref } from 'vue';
 import HotelsList from './HotelsList.vue';
 import Pagination from './Pagination.vue';
-import BaseSpinner from './../../../components/UI/BaseSpinner.vue';
 import SearchResultsViewMainSortBy from './SearchResultsViewMainSortBy.vue';
 import { getDataFromLocalStorage } from '../../../helpers/utils'
 
 let props = defineProps({
-    hotelsFromApiRequests: Array,
+    hotelsToShow: Array,
     hotelsMetaData: Array,
     setDataUpdatedToTrue: Function,
-    loading: Boolean
+    loading: Boolean,
 })
 
 let totalPages = ref()

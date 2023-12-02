@@ -25,29 +25,10 @@ import * as utils from '../../../helpers/utils'
 
 
 let props=defineProps(({
-    setDataUpdatedToTrue:Function
+    setDataUpdatedToTrue:Function,
 }))
 
 let store = useAppStore()
-// let sortOptions = ref([])
-// const getSortOptions = () => {
-//     if (!localStorage.getItem('sortOptions')) {
-//         console.log(store.lastSavedSearch)
-//         searchApis.getSortOptions({...store.lastSavedSearch,search_type: 'CITY'}).then(res => {
-//             const sortOptionsArray = res.data.data
-//             console.log(sortOptionsArray)
-//             // const filteredCities = citiesArray.filter((city) => city.search_type === 'city')
-//             sortOptions.value = sortOptionsArray
-//             let storedSearchOptions = JSON.stringify(sortOptionsArray)
-//             localStorage.setItem('sortOptions', storedSearchOptions)
-//         })
-//     }else {
-//         let StringifiedSortOptions = localStorage.getItem('sortOptions')
-//         let parsedSortOptions = JSON.parse(StringifiedSortOptions)
-//         sortOptions.value = parsedSortOptions
-//     }
-// }
-
 
 const { dataToRetrieve, getAndSave } = getDataAndSaveData()
 let searchParams=ref(utils.getDataFromLocalStorage('searchParameters'))
@@ -68,6 +49,7 @@ let handleSortChange = async (e) => {
     const stringifiedhotelsData = JSON.stringify(hotelsData)
     localStorage.setItem('hotelsData', stringifiedhotelsData)
     props.setDataUpdatedToTrue()
+    let clientFilter=utils.setDataInLocalStorage('clientFilter',{rating:null,name:null})
 }
 
 

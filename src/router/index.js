@@ -5,6 +5,7 @@ import SignInView from '../views/SignInView/SignInView.vue'
 import SearchResults from '../views/SearchResultsView/SearchresultsView.vue'
 import HotelDetailsView from '../views/HotelDetailsView/HotelDetailsView.vue'
 import CheckOutView from '../views/CheckOutView/CheckOutView.vue'
+import NotFoundView from '../views/NotFoundView/NotFoundView.vue'
 
 const routes = [
   {
@@ -14,43 +15,51 @@ const routes = [
       {
         path: '',
         name: 'home',
-        meta:{
-          title:"Home"
+        meta: {
+          title: "Home"
         },
         component: HomeView
       },
       {
         path: '/signin',
         name: 'signin',
-        meta:{
-          title:"Sign In"
+        meta: {
+          title: "Sign In"
         },
         component: SignInView
       },
       {
         path: '/searchResults',
         name: 'searchResults',
-        meta:{
-          title:"Search Results"
+        meta: {
+          title: "Search Results"
         },
         component: SearchResults
       },
       {
-        path:'/hotelDetails/:id/:rating',
-        name:'hotelDetails',
-        meta:{
-        title:"Hotel Details"
+        path: '/hotelDetails/:id/:rating',
+        name: 'hotelDetails',
+        meta: {
+          title: "Hotel Details"
         },
-        component:HotelDetailsView
+        component: HotelDetailsView
       },
       {
-        path:'/checkout',
-        name:'checkout',
-        meta:{
-          title:""
+        path: '/checkout',
+        name: 'checkout',
+        meta: {
+          title: "checkout",
         },
-        component:CheckOutView
-      }
+        component: CheckOutView
+      },
+      {
+        path: '/:notFound(.*)',
+        name: 'notfound',
+        meta: {
+          title: "Not Found",
+        },
+        component: NotFoundView
+      },
     ]
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
@@ -65,8 +74,8 @@ const router = createRouter({
   routes
 })
 
-router.beforeEach((to,from,next)=>{
-  document.title =`My Dream Place | ${to.meta.title}`|| 'My Dream Place'
+router.beforeEach((to, from, next) => {
+  document.title = `My Dream Place | ${to.meta.title}` || 'My Dream Place'
   next()
 })
 

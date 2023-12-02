@@ -9,7 +9,7 @@ const baseURL = 'https://booking-com15.p.rapidapi.com/api/v1/hotels/'
 export const axiosInstance = axios.create({
     baseURL,
     headers: {
-        'X-RapidAPI-Key': '3422013941msh21877766034a033p1e4227jsnd0fbf222bc3b',
+        'X-RapidAPI-Key': 'aec47a212fmsh8cd2a07cb23a3f2p14e9dejsn3427e443680d',
         'X-RapidAPI-Host': 'booking-com15.p.rapidapi.com'
     },
 })
