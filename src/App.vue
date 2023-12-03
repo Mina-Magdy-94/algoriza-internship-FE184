@@ -6,10 +6,11 @@
 import { onMounted,watch } from 'vue';
 import { useRouter } from 'vue-router';
 import {isAuthorized} from'./store/auth'
+import { checkTokenValidity } from './helpers/utils';
 
 let router=useRouter()
 onMounted(()=>{
-
+    isAuthorized.value=checkTokenValidity()
 })
 
 watch(isAuthorized,((newValue)=>{

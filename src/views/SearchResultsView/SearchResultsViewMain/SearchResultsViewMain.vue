@@ -42,13 +42,6 @@ let setCurrentPage = (pageNumber) => {
 let searchParameters = ref({})
 
 
-
-// let getMetaDataFromLocalStorage=()=>{
-//     let stringifiedMetaData= localStorage.getItem('hotelsData')
-//     let parsedMetaData=JSON.parse(stringifiedMetaData)
-//     return parsedMetaData
-// }
-
 onMounted(() => {
     searchParameters.value = getDataFromLocalStorage('searchParameters')
     currentPage.value = parseInt(searchParameters.value?.page_number)

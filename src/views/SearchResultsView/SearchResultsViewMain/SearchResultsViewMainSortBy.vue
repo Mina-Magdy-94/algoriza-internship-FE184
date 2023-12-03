@@ -47,7 +47,7 @@ let handleSortChange = async (e) => {
     const hotelsData = response.data.data
     console.log({ hotelsData })
     const stringifiedhotelsData = JSON.stringify(hotelsData)
-    localStorage.setItem('hotelsData', stringifiedhotelsData)
+    // localStorage.setItem('hotelsData', stringifiedhotelsData)
     props.setDataUpdatedToTrue()
     let clientFilter=utils.setDataInLocalStorage('clientFilter',{rating:null,name:null})
 }

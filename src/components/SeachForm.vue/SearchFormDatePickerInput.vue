@@ -28,10 +28,9 @@ const handleDateSelection = (val) => {
 
 </script>
 
-<style scoped>
-:root {
+<style>
+/* :root {
     --dp-font-size: 12px;
-    /*Default font-size*/
 }
 
 .dp__main {
@@ -40,16 +39,12 @@ const handleDateSelection = (val) => {
 }
 
 
-.dp__theme_light {
+*/ .dp__theme_light {
     --dp-background-color: #F2F2F2
-}
+} 
 
-.dp__action_select {
-    background-color: var(--dp-background-color);
+.dp__action_button.dp__action_select{
+    background-color:#2F80ED;
     color: white;
 }
 </style>
-
-
-
-<!-- @update:model-value="emits('dateSelected', date)" -->

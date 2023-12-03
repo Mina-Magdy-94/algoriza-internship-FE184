@@ -91,16 +91,4 @@ let search = async () => {
     }
 }
 
-// onMounted(() => {
-//     if (route.name === 'searchResults') {
-//         let searchParams = getDataFromLocalStorage('searchParameters')
-//         if (searchParams) {
-//             searchParams.arrival_date = new Date(searchParams.arrival_date)
-//             searchParams.departure_date = new Date(searchParams.departure_date)
-//             filters.value = { ...filters.value, ...searchParams }
-//             console.log(filters.value)
-//         }
-//     }
-// })
-
 </script>

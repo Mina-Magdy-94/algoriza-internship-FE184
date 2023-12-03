@@ -15,16 +15,16 @@
             <nav
                 class="hidden sm:flex items-center sm:col-start-5 sm:col-end-11 md:col-start-4 md:col-end-10 lg:col-end-10 xl:col-start-4 xl:col-end-10 ">
                 <ul class="w-full sm:flex xl:justify-center justify-between content-center p-[5px]">
-                    <router-link v-for="(listItem, index) in NAVIGATION_LINKS" :key="listItem" :to="{path:`${listItem.toLowerCase()}`}"
+                    <li v-for="(listItem, index) in NAVIGATION_LINKS" :key="listItem" @click="goTo(listItem)"
                         class="p-0 h-5 xl:mx-6 text-base font-normal leading-5 hover:cursor-pointer">
                         {{ listItem }}
-                    </router-link>
+                    </li>
                 </ul>
             </nav>
 
-            <div v-if="!hasToken"
+            <div v-if="!isAuthorized"
                 class="hidden sm:col-start-11 bg-yellow sm:col-end-13 md:col-start-11 md:col-end-13 xl:col-start-12 sm:flex justify-end items-center">
-                <BaseButton :button-text="'Login'" class="col-start-12 col-end-13" />
+                <BaseButton :button-text="'Login'" class="col-start-12 col-end-13"  @click="router.push({name:'signin'})"/>
             </div>
 
             <div v-else
@@ -48,6 +48,7 @@ import BaseButton from '../UI/BaseButton'
 import { useRoute, useRouter } from 'vue-router';
 import { checkTokenValidity } from '../../helpers/utils'
 import UserDropdown from '../UI/UserDropdown.vue';
+import {isAuthorized} from'../../store/auth' 
 
 
 
@@ -60,12 +61,14 @@ let router = useRouter()
 
 const NAVIGATION_LINKS = ref(['Home', 'Discover', 'Activities', 'About', 'Contact'])
 const showDropDown = ref(false)
-const hasToken = computed(checkTokenValidity)
 
 
-let goTo = () => {
-    console.log(listItem.toLowerCase())
-    // router.push({ path: listItem.toLowerCase() === 'home' ? '/home' : '/notfound' })
+let goTo=(page)=>{
+    if(page.toLowerCase()==='home'){
+        router.push({name:'home'})
+    }else{
+        router.push({path:'/notfound'})
+    }
 }
 
 let setShowDropdown = () => showDropDown.value = !showDropDown.value

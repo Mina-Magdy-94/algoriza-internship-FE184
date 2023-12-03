@@ -71,25 +71,7 @@ let submitForm = () => {
     if (!(emailError.value || passwordError.value)) {
         createOrRenewToken()
         isAuthorized.value=true
-        let isSearchParams=checkInLocalStorage('searchParameters')
-        if(isSearchParams){
-            router.push({name:'searchResults'})
-        }else{
-            router.push({name:'home'})
-        }
+        router.push({name:'searchResults'})
     }
 }
-
-
-
-
-
-
-// let submitForm = () => {
-//     if (!(emailError.value || passwordError.value)) {
-//         createOrRenewToken()
-//         isAuthorized.value=true
-//         router.push({name:'searchResults'})
-//     }
-// }
 </script>

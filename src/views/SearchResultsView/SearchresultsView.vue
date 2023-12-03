@@ -38,7 +38,7 @@ let setClientSideFilters = (clientSideFilters = { rating: 0, name: "" }) => {
         setDataInLocalStorage('clientFilter', newClintSideFilter)
         if (newClintSideFilter.rating && newClintSideFilter.name) {
             hotelsToShow.value = hotelsFromApiRequests.value.filter(hotel => {
-                return hotel.property.name.toLowerCase().includes(newClintSideFilter.name.toLowerCase()) && Math.round(hotel.property.reviewScore / 2) === newClintSideFilter.rating
+                return hotel.property.name.toLowerCase().includes(newClintSideFilter.name.toLowerCase()) && Math.round(hotel.property.reviewScore / 2) >= newClintSideFilter.rating
             })
         }
         else if (newClintSideFilter.rating) {
