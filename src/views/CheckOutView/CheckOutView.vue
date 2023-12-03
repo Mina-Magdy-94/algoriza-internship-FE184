@@ -15,7 +15,7 @@
                         {{hotel && hotel.hotel_name}}
                     </h3>
                     <div class="flex justify-start items-center mb-[25px]">
-                        <img src="../../assets/icons/star.svg" alt="star(s)" v-for="star in 4">
+                        <img src="../../assets/icons/star.svg" alt="star(s)" v-for="star in 4" :key="star">
                         <p class="text-[14px] font-normal leading-[19.6px] tracking-[0.28px]">4 (1200 Reviews)</p>
                     </div>
                     <div

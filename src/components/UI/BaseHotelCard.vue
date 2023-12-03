@@ -18,7 +18,7 @@
             </div>
             <!-- second row -->
             <div class="flex flex-nowrap flex-start">
-                <figure v-for="num in reviewScore">
+                <figure v-for="num in reviewScore" :key="num">
                     <img src="../../assets/icons/star.svg" alt="star">
                 </figure>
                 <p class="w-[123px] h-[20px] text-[#4f4f4f] text-[14px] leading-[19.6px] tracking-[0.28px] font-normal ">

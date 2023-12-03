@@ -21,7 +21,7 @@
                                 class="text-[#181818] text-[14px] font-semibold leading-[19.6px] tracking-[0.28px]">Last
                                 name</label>
                             <input type="text" id="last-name" name="lastName" :ref="assignRef('lastName')"
-                                v-model="formValues.lastName"
+                                v-model="formValues.lastName" @input="validate"
                                 class="rounded-[4px] bg-[#F2F2F2] flex items-center p-[12px] pt-[11px] outline-none focus:bg-[#FFF] focus:border-[1px] hover-border-solid focus:border-blue-1">
                         </div>
                     </div>
@@ -41,7 +41,7 @@
                         </div>
                         <div class="w-[338px] h-[68px] flex flex-col justify-end rounded-[4px]">
                             <input type="number" id="mobile" name="mobile" :ref="assignRef('mobile')"
-                                v-model="formValues.mobile"
+                                v-model="formValues.mobile" @input="e=>e.target.classList.remove('invalid')"
                                 class="rounded-[4px] bg-[#F2F2F2] flex items-center p-[12px] pt-[11px] outline-none focus:bg-[#FFF] focus:border-[1px] hover-border-solid focus:border-blue-1">
                         </div>
                     </div>
@@ -90,7 +90,7 @@
                         class="h-[20px] text-[#181818] text-[14px] font-semibold leading-[19.6px] tracking-[0.28px]">Name
                         on card</label>
                     <div class="h-[68px] flex justify-between items-center">
-                        <input type="text" id="full-name" name="nameOnCard" :ref="assignRef('nameOnCard')"
+                        <input type="text" id="full-name" name="nameOnCard" :ref="assignRef('nameOnCard')" @input="validate"
                             v-model="formValues.nameOnCard"
                             class="h-[44px] w-[500px] p-[12px] pt-[11px] bg-[#F2F2F2] rounded-md outline-none focus:bg-[#FFF] focus:border-[1px] hover-border-solid focus:border-blue-1">
                         <img src="../../assets/icons/right-circle.svg" alt="valid icon" class="w-[20px] h-[20px]">
@@ -102,8 +102,8 @@
                         class="h-[20px] text-[#181818] text-[14px] font-semibold leading-[19.6px] tracking-[0.28px]">Debit/Credit
                         card number</label>
                     <div class="h-[68px] flex justify-between items-center">
-                        <input type="text" id="card-number" name="cardNumber" :ref="assignRef('cardNumber')"
-                            v-model="formValues.cardNumber"
+                        <input type="number" id="card-number" name="cardNumber" :ref="assignRef('cardNumber')"
+                            v-model="formValues.cardNumber" @input="e=>e.target.classList.remove('invalid')"
                             class="h-[44px] w-[500px] p-[12px] pt-[11px] bg-[#F2F2F2] rounded-md outline-none focus:bg-[#FFF] focus:border-[1px] hover-border-solid focus:border-blue-1">
                         <img src="../../assets/icons/right-circle.svg" alt="valid icon" class="w-[20px] h-[20px]">
                     </div>
@@ -113,15 +113,17 @@
                     <label class="h-[20px] text-[#181818] text-[14px] font-semibold leading-[19.6px] tracking-[0.28px]">
                         Expiration Date</label>
                     <div class="h-[42px] flex justify-start items-center">
-                        <select :ref="assignRef('expirationMonth')" v-model="formValues.expirationMonth"
+                        <select :ref="assignRef('expirationMonth')" v-model="formValues.expirationMonth" @input="e=>e.target.classList.remove('invalid')"
                             class="h-[42px] w-[150px] p-[12px] pt-[11px] bg-[#F2F2F2] rounded-md outline-none focus:bg-[#FFF] focus:border-[1px] hover-border-solid focus:border-blue-1 mr-[12px]">
                             <option
                                 v-for="month in ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december']"
-                                :value="month.slice(0, 3)">{{ month.replace(/^\w/, (c) => c.toUpperCase()) }}</option>
+                                :value="month.slice(0, 3)"
+                                :key="month"
+                                >{{ month.replace(/^\w/, (c) => c.toUpperCase()) }}</option>
                         </select>
-                        <select :ref="assignRef('expirationYear')" v-model="formValues.expirationYear"
+                        <select :ref="assignRef('expirationYear')" v-model="formValues.expirationYear" @input="e=>e.target.classList.remove('invalid')"
                             class="h-[42px] w-[150px] p-[12px] pt-[11px] bg-[#F2F2F2] rounded-md outline-none focus:bg-[#FFF] focus:border-[1px] hover-border-solid focus:border-blue-1 mr-[16px]">
-                            <option v-for="year in expirationDateOptions" :value="year">{{ year }}</option>
+                            <option v-for="year in expirationDateOptions" :key="year" :value="year">{{ year }}</option>
                         </select>
                         <img src="../../assets/icons/right-circle.svg" alt="valid icon" class="w-[20px] h-[20px]">
                     </div>
@@ -133,7 +135,7 @@
                             class="text-[#181818] text-[14px] font-semibold leading-[19.6px] tracking-[0.28px]">
                             Security Code</label>
                         <input type="number" id="security-code" name="securityCode" :ref="assignRef('securityCode')"
-                            v-model="formValues.securityCode"
+                            v-model="formValues.securityCode" @input="e=>e.target.classList.remove('invalid')"
                             class="rounded-[4px] bg-[#F2F2F2] flex items-center p-[12px] pt-[11px] outline-none focus:bg-[#FFF] focus:border-[1px] hover-border-solid focus:border-blue-1">
                     </div>
                     <div class="w-[240px] h-[68px] flex flex-col justify-between rounded-[4px]">
@@ -141,7 +143,7 @@
                             class="text-[#181818] text-[14px] font-semibold leading-[19.6px] tracking-[0.28px]">
                             Billing Zip code</label>
                         <input type="number" id="zip-code" name="billingZipCode" :ref="assignRef('billingZipCode')"
-                            v-model="formValues.billingZipCode"
+                            v-model="formValues.billingZipCode" @input="e=>e.target.classList.remove('invalid')"
                             class="rounded-[4px] bg-[#F2F2F2] flex items-center p-[12px] pt-[11px] outline-none focus:bg-[#FFF] focus:border-[1px] hover-border-solid focus:border-blue-1">
                     </div>
                     <img src="../../assets/icons/right-circle.svg" alt="valid icon"
@@ -222,37 +224,44 @@ let formValues = ref({
 })
 
 
-
-// let validate = (e) => {
-//     let regexObj = {
-//         "firstName": /^[A-Z][a-z]{2,}$/, //name must be at least 3 letters with first letter capitalized
-//         'lastName': /^[A-Z][a-z]{2,}$/, //name must be at least 3 letters with first letter capitalized
-//         'mobile': '0(10|11|12|14|15|16|17|18|19)\d{8}$',//mobile must be 11 numbers starting with 010 011 012 014 015 016 0170 
-//         'nameOnCard': /`${formValues.firstName} ${formValues.lastName}`/,
-//         'cardNumber': /\d{16}/,//16 digits
-//         'securityCode': /\d{3}/,
-//         'billingZipCode': '\d{5}'
-//     }
-
-//     let regex = regexObj[e.target.name]
-//     // console.log({regex})
-//     let isValid = regex.test(e.target.value)
-//     // console.log({isValid})
-//     // return isValid
-//     if(!isValid){
-//         e.target.classList.add('invalid')
-//     }else{
-//         e.target.classList.remove('invalid')
-//     }
-// }
+let validate=(e)=>{
+    let inputValue=e.target.value
+    let arrOfNumberInTheString=inputValue.split("").filter((character=>!isNaN(parseInt(character)) ))
+    console.log(arrOfNumberInTheString)
+    if(arrOfNumberInTheString.length){
+        e.target.classList.add('invalid')
+    }else{
+        e.target.classList.remove('invalid')
+    }
+}
 
 let submitForm = () => {
-    if (!Object.values(formValues.value).includes(null)) {
+    let invalidArr=[]
+
+    for (let input in refMap.value){
+        if(refMap.value[input].type==='text'){
+            let valueToValidate=refMap.value[input].value
+            let arrayOfNumbeFoundInValueToValidate=valueToValidate.split("").filter((character=>!isNaN(parseInt(character)) ))
+            if(arrayOfNumbeFoundInValueToValidate.length){
+                invalidArr=[...invalidArr,refMap.value[input]]
+            }
+        }
+        // console.log(refMap.value[input])
+        // console.log(refMap.value[input].type)
+        // console.log(refMap.value[input].value)
+    }
+
+
+    if (!Object.values(formValues.value).includes(null) && !invalidArr.length) {
         props.openModal()
     } else {
+        let allInputs=Object.values(refMap.value)
+        allInputs.forEach(input=>input.classList.remove('invalid'))
         let emptyInputs = Object.keys(formValues.value).filter(key => { return formValues.value[key] === null })
         emptyInputs.forEach(key => refMap.value[key].classList.add('invalid'))
+        invalidArr.forEach(key=>key.classList.add('invalid'))
     }
+
 }
 
 let expirationDateOptions = computed(() => {

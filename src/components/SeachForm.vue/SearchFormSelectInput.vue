@@ -3,7 +3,7 @@
         <select name="destination" id="destination" :modelValue="modelValue" @change="handleSelectionUpdate"
             class="bg-[#F2F2F2] text-gray-900 rounded-[4px] focus:ring-blue-500 block pl-4 py-2 outline-none">
             <option value="option" disabled selected hidden>Where do you want to go?</option>
-            <option v-for="city in dataToRetrieve" :value="city.dest_id">{{ city.city_name }}</option>
+            <option v-for="city in dataToRetrieve" :key="city.dest_id" :value="city.dest_id">{{ city.city_name }}</option>
         </select>
         <div class="absolute inset-y-0 left-0   
                     flex items-center  

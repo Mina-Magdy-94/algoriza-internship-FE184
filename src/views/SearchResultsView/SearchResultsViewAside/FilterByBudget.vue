@@ -5,7 +5,7 @@
             <div
                 :class="`flex flex-col pt-[18px] pb-[19px] pl-[18px] pr-[20px] bg-[#FFFFFF] w-full h-fit max-h-[319px] text-[14px] leading-normal font-normal tracking-[0.28px] ${slotProps.class}`">
                 <div class="flex flex-col h-[156px] p-0">
-                    <div v-for="priceRange in priceList" class="flex flex-nowrap justify-start w-full h-5 mb-[14px]">
+                    <div v-for="priceRange in priceList" :key="priceRange" class="flex flex-nowrap justify-start w-full h-5 mb-[14px]">
                         <div class="flex justify-start items-center gap-2 w-fit h-[20px]">
                             <input type="checkbox" id="vehicle1" name="numbers" :value="priceRange" v-model="prices"
                                 :disabled="isSwitchButtonON" class=" cursor-pointer w-[20px] h-[20px]  ">

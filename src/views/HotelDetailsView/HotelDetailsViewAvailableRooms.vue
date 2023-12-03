@@ -21,14 +21,14 @@
                 <img src="../../assets/images/Frameperson.svg" alt="travelling tourist" class="absolute z-10 top-[35px] right-[50px]">
             </div>
 
-            <BaseCard v-for="photo in photosToShow" :photo-to-display="photo">
+            <BaseCard v-for="photo in photosToShow" :photo-to-display="photo" :key="photo">
                 <div class="w-full h-[223px] bg-[#FFF] rounded-b-md p-[20px] pb-[24px]">
                     <h3
                         class="h-[22px] flex flex-col justify-center text-[#1A1A1A] text-[18px] font-medium leading-normal tracking-[0.18px] mb-[18px]">
                         {{name_with_count || 'ordinary bed'}}
                     </h3>
                     <div class="flex flex-col justify-between h-[80px] mb-[24px] overflow-auto">
-                        <div class="h-[20px] w-fit max-w-full flex justify-start items-center mb-[3px]" v-for="roomFacility in roomFacilities">
+                        <div class="h-[20px] w-fit max-w-full flex justify-start items-center mb-[3px]" v-for="roomFacility in roomFacilities" :key="roomFacility">
                             <img src="../../assets/icons/bag-tick.svg" alt="bag" class="mr-[10px]">
                             <p class="text-[14px] font-normal leading-[19.6px] tracking-[0.28]">{{ roomFacility.name }}</p>
                         </div>

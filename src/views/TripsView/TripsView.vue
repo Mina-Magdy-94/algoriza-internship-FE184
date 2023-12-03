@@ -2,12 +2,12 @@
     <template v-if="trips">
         <h1 class="text-[#1A1A1A] text-[32px] font-semibold leading-normal tracking-[0.32px] h-[32px] mb-[28px]">My trips
         </h1>
-        <ul v-for="trip in trips">
+        <ul v-for="trip in trips" :key="trip.hotel_id">
             <!-- h-[240px] -->
             <li
-                class=" p-[20px] pr-[24px] rounded-[5px] bg-[#FFFFFF] border-[1px] border-solid border-[#E0E0E0] flex justify-between mb-[24px]">
+                class=" p-[20px] pr-[24px] rounded-[5px] bg-[#FFFFFF] border-[1px] border-solid border-[#E0E0E0] flex justify-between items-center mb-[24px]">
                 <!-- left side -->
-                <figure class="rounded-[5px]" v-for="room in trip.rooms">
+                <figure class="rounded-[5px] mr-[24px]" v-for="room in trip.rooms" :key="room.description">
                     <img :src="room.photos[0].url_max750" alt="" class="w-[285px] h-[200px] rounded-[5px]">
                 </figure>
                 <!-- right side -->
@@ -19,7 +19,7 @@
                     </h2>
                     <!-- second row -->
                     <div class="flex flex-nowrap flex-start mb-[30px]">
-                        <figure v-for="num in 4">
+                        <figure v-for="num in 4" :key="num">
                             <img src="../../assets/icons/star.svg" alt="">
                         </figure>
                         <p

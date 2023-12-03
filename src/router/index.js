@@ -15,6 +15,7 @@ const routes = [
     children: [
       {
         path: '',
+        alias:'/home',
         name: 'home',
         meta: {
           title: "Home"

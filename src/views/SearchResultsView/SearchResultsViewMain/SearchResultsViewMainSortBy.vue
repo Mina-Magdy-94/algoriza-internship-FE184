@@ -8,7 +8,7 @@
                 class="text-[#333] text-[14px] font-normal leading-normal tracking-[0.28px] border-none  outline-none">
                 <option :value="'default option'" @click="(e) => console.log(e.target.value)" disabled selected hidden>
                     {{ dataToRetrieve?.length && dataToRetrieve[0].title }}</option>
-                <option v-for="option in dataToRetrieve" :value="option.id" @click="(e) => console.log(e.target.value)">
+                <option v-for="option in dataToRetrieve" :key="option.id" :value="option.id">
                     {{ option.title }}</option>
             </select>
         </div>

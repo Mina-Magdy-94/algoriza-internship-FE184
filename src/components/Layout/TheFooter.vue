@@ -12,9 +12,9 @@
                     </div>
                     <p class="sm:ml-6 w-11/12 h-10 text-center sm:text-left">Your next go to companion for travel</p>
                 </li>
-                <li v-for="item in footerItems">
+                <li v-for="item in footerItems" :key="item">
                     <h4 class="font-medium text-base">{{ item.title }}</h4>
-                    <p :class="['font-normal text-sm py-2',{'text-blue-1':cont==='see more'}]" v-for="cont in item.content">{{ cont }}</p>
+                    <p :class="['font-normal text-sm py-2',{'text-blue-1':cont==='see more'}]" v-for="cont in item.content" :key="cont">{{ cont }}</p>
                 </li>
             </ul>
         </div>

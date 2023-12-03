@@ -26,7 +26,7 @@
                         {{hotelDetails?.hotel_name}}</h1>
 
                     <div class="flex flex-nowrap flex-start h-[20px]">
-                        <figure v-for="num in rating">
+                        <figure v-for="num in rating" :key="num">
                             <img src="../../assets/icons/star.svg" alt="star">
                         </figure>
                         <p
@@ -64,7 +64,7 @@
                         <div class="h-[89px]">
                             <ul class="h-full flex flex-col items-start flex-wrap overflow-auto">
                                 <li class="flex justify-start items-center w-fit h-[12px] py-[8px] mb-[13px]"
-                                    v-for="facility in facilities">
+                                    v-for="facility in facilities" :key="facility">
                                     <img src="../../assets/icons/home-wifi.svg" :alt="facility.icon" :title="facility.icon" class="mr-[12px]">
                                     <p>{{ facility?.name  || 'No Facilities found'}}</p>
                                 </li>

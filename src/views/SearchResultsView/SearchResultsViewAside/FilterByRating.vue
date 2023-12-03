@@ -6,7 +6,7 @@
                 <p class="text-[#4F4F4F] text-[14px] font-normal tracking-[0.28px] leading-normal">Show only ratings more
                     than</p>
                 <div class="w-[250px] h-[46px] rounded-[5px] flex flex-nowrap">
-                    <div v-for="rating in 5"
+                    <div v-for="rating in 5" :key="rating"
                     :class="[`flex flex-nowrap justify-evenly items-center border-[#E0E0E0] border-[1px] w-[50px] h-[46px] hover:cursor-pointer ${borderStylingForFirstAndLastStars(rating)}`]" :title="`${rating} star${rating > 1 ? 's' : ''}`"
                     @click="setClientSideFilters({rating})"
                     >

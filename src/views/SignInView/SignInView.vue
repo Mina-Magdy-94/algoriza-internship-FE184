@@ -27,7 +27,7 @@
 <script setup>
 import BaseButton from '@/components/UI/BaseButton.vue';
 import { ref } from 'vue';
-import {createOrRenewToken} from '../../helpers/utils'
+import {checkInLocalStorage, createOrRenewToken} from '../../helpers/utils'
 import { useRouter } from 'vue-router';
 import { isAuthorized } from '@/store/auth';
 
@@ -71,7 +71,25 @@ let submitForm = () => {
     if (!(emailError.value || passwordError.value)) {
         createOrRenewToken()
         isAuthorized.value=true
-        router.push({name:'searchResults'})
+        let isSearchParams=checkInLocalStorage('searchParameters')
+        if(isSearchParams){
+            router.push({name:'searchResults'})
+        }else{
+            router.push({name:'home'})
+        }
     }
 }
+
+
+
+
+
+
+// let submitForm = () => {
+//     if (!(emailError.value || passwordError.value)) {
+//         createOrRenewToken()
+//         isAuthorized.value=true
+//         router.push({name:'searchResults'})
+//     }
+// }
 </script>
