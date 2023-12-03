@@ -12,7 +12,7 @@
             <img src="../../assets/icons/wallet-3 1.svg" alt="" class="mr-[10px] w-[20px] h-[20px]">
             <span>Reward and wallet</span>
         </li>
-        <li class="p-[10px] bg-[#FFF] shadow-[0_0.5px_0p_-0p_rgba(214,214,214)] flex justify-start items-center rounded-b-[10px] w-full h-[40px] hover:cursor-pointer hover:bg-slate-400" @click="goTo('signin')">
+        <li class="p-[10px] bg-[#FFF] shadow-[0_0.5px_0p_-0p_rgba(214,214,214)] flex justify-start items-center rounded-b-[10px] w-full h-[40px] hover:cursor-pointer hover:bg-slate-400" @click="goTo('home')">
             <img src="../../assets/icons/logout 1.svg" alt="" class="mr-[10px] w-[20px] h-[20px]">
             <span>Sign out</span>
         </li>
@@ -30,7 +30,7 @@ let router=useRouter()
 
 let goTo=(pageToGo)=>{
     props.setShowDropdown()
-    if(pageToGo==='signin'){
+    if(pageToGo==='home'){
         localStorage.clear()
     }
     router.push({path:`/${pageToGo}`})
