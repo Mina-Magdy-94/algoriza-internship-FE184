@@ -27,7 +27,7 @@
                 </defs>
             </svg>
         </button>
-        <button v-for="page in totalPages" :key="page" @click="gotToPage(page)"
+        <button v-for="page in totalPages" :key="page" @click="goToPage(page)"
             :class="[`btn w-[40px] h-[40px] mx-[1px]  bg-[#fff] rounded-md hover:bg-blue-1 hover:text-white py-[9px] flex items-center justify-center text-[#9E9E9E] cursor-pointer ${activePageStyling(page)}`]">
             {{ page }}
         </button>
@@ -61,7 +61,7 @@
 </template>
 
 <script setup>
-import { computed , ref} from 'vue'
+import { computed, ref } from 'vue'
 import * as searchApis from '../../../apis/searchApis'
 import * as utils from '../../../helpers/utils'
 let props = defineProps({
@@ -69,18 +69,18 @@ let props = defineProps({
     totalPages: Number,
     setCurrentPage: Function,
     setDataUpdatedToTrue: Function,
-    setClientSideFilters:Function
+    setClientSideFilters: Function
 })
 
 
-let searchParams=ref(utils.getDataFromLocalStorage('searchParameters'))
+let searchParams = ref(utils.getDataFromLocalStorage('searchParameters'))
 
-let gotToPage = async(page) => {
+let goToPage = async (page) => {
     props.setCurrentPage(page)
     let newSearchParams = { ...searchParams.value, page_number: page.toString() }
     localStorage.setItem('searchParameters', JSON.stringify(newSearchParams))
     props.setDataUpdatedToTrue()
-    let clientFilter=utils.setDataInLocalStorage('clientFilter',{rating:null,name:null})
+    props.setClientSideFilters({ rating: 0, name: "" })
 
 }
 

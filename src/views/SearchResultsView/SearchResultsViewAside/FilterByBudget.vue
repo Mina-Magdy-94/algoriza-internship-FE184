@@ -106,7 +106,7 @@ watch(prices, (newPrices, oldPrices) => {
             let newSearchParameters = { ...searchParameters, price_min: newprice_min,price_max: newprice_max,page_number: '1' }
             localStorage.setItem('searchParameters', JSON.stringify(newSearchParameters))
             props.setDataUpdatedToTrue()
-            setClientSideFilters({ rating: null, name: null })
+            props.setClientSideFilters({ rating: 0, name: "" })
         }
     }
     let timeout = setTimeout(getPriceFilteredDataFromApi, 1000);

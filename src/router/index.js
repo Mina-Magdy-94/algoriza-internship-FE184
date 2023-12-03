@@ -6,6 +6,7 @@ import SearchResults from '../views/SearchResultsView/SearchresultsView.vue'
 import HotelDetailsView from '../views/HotelDetailsView/HotelDetailsView.vue'
 import CheckOutView from '../views/CheckOutView/CheckOutView.vue'
 import NotFoundView from '../views/NotFoundView/NotFoundView.vue'
+import TripsView from '../views/TripsView/TripsView.vue'
 
 const routes = [
   {
@@ -45,12 +46,20 @@ const routes = [
         component: HotelDetailsView
       },
       {
-        path: '/checkout',
+        path: '/checkout/:id',
         name: 'checkout',
         meta: {
           title: "checkout",
         },
-        component: CheckOutView
+        component: CheckOutView,
+      },
+      {
+        path:'/mytrips',
+        name:'mytrips',
+        meta:{
+          title:'My Trips'
+        },
+        component:TripsView
       },
       {
         path: '/:notFound(.*)',
@@ -70,7 +79,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHistory(),
   routes
 })
 

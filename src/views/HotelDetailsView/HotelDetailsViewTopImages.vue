@@ -36,6 +36,10 @@ onMounted(()=>{
         firstPhoto.value=photos.value[0].url_max750
         secondPhoto.value=photos.value[1].url_max750
         thirdPhoto.value=photos.value[2].url_max750
+
+        console.log(firstPhoto.value)
+        console.log(secondPhoto.value)
+        console.log(thirdPhoto.value)
     }
 })
 </script>

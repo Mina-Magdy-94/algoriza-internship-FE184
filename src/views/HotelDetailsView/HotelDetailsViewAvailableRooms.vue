@@ -33,7 +33,7 @@
                             <p class="text-[14px] font-normal leading-[19.6px] tracking-[0.28]">{{ roomFacility.name }}</p>
                         </div>
                     </div>
-                    <BaseButton button-text="Reserve suite" @click="router.push({name:'checkout'})"
+                    <BaseButton button-text="Reserve suite" @click="reserveSuite"
                         class="w-full py-[12px] px-[18px] text-[15px] leading-[20px] tracking-[0.3px]" />
                 </div>
             </BaseCard>
@@ -47,9 +47,13 @@ import BaseCard from '../../components/UI/BaseCard.vue'
 
 import { computed } from 'vue'
 import { useRouter } from 'vue-router';
+import { setDataInLocalStorage } from '@/helpers/utils';
+import { useAppStore } from '@/store/store';
 let props = defineProps({
     hotelDetails: Object
 })
+
+let store=useAppStore()
 
 let router=useRouter()
 
@@ -65,6 +69,7 @@ let photos = computed(() => {
 let firstPhoto = computed(() => {
     return photos.value[0].url_max1280
 })
+
 let secondPhoto = computed(() => {
     return photos.value[1].url_max750
 })
@@ -87,5 +92,13 @@ let name_with_count=computed(()=>{
         return bedTypes.value.name_with_count
     }
 })
+
+let reserveSuite=()=>{
+    let hotelToCheckOut=props.hotelDetails
+    console.log(hotelToCheckOut.hotel_id)
+    // store.setHotelAsCheckOutHotel(hotelToCheckOut)
+    // setDataInLocalStorage('checkouthotel',hotelToCheckOut)
+    router.push({name:'checkout',params:{id:hotelToCheckOut.hotel_id}})
+}
 
 </script>

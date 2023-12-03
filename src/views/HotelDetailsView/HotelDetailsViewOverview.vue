@@ -45,7 +45,7 @@
                 </div>
 
                 <div class="w-full h-fit max-h-[508px] rounded-md bg-[#FFF] ">
-                    <div class="w-[740px] h-[239px] pt-[24px] ml-[30px]  mb-[44px]">
+                    <div class="w-[740px] h-[239px] pt-[24px] ml-[30px]  mb-[44px] overflow-auto">
                         <h3
                             class="h-[21px] text-[#181818] text-[18px] font-medium leading-normal tracking-[0.18px] mb-[20px]">
                             OverView

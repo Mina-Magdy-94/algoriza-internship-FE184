@@ -28,6 +28,7 @@ let props = defineProps({
     hotelsToShow: Array,
     hotelsMetaData: Array,
     setDataUpdatedToTrue: Function,
+    setClientSideFilters:Function,
     loading: Boolean,
 })
 

@@ -1,6 +1,6 @@
 <template>
   <main>
-    <BaseModal v-if="isModalOpen" :close-modal="closeModal">
+    <BaseModal v-if="isModalOpen" :btn-function="closeModal" title="Welcome to My Dream Place" content="You can now enjoy your travel experience with easy access to resources and more" button="Get Started">
   <WelcomePictureInModal/>
     </BaseModal>
     <HomeViewHeroImage />

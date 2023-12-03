@@ -9,9 +9,10 @@ export const useAppStore = defineStore('appStore', {
             adults: null,
             room_qty: null,
             page_number: '1',
-            // hasLastSavedSearch: false
         },
-        isAuthorized: false
+        isAuthorized: false,
+        hotelToCheckOut:{},
+        trips:[]
     }),
     actions: {
         setLastSavedSearch(savedSearch) {
@@ -19,7 +20,17 @@ export const useAppStore = defineStore('appStore', {
         },
         setISAuthorized(authValue) {
             this.isAuthorized = authValue
-        }
+        },
+        setHotelAsCheckOutHotel(hotel){
+            this.hotelToCheckOut=hotel
+        },
+        addTrip(trip){
+            this.trips=[...this.trips,trip]
+        },
+        removeTrip(trip){
+            this.trips=this.trips.filter(t=>t.property.name !==trip.property.name)
+        },
+
     },
 
 }

@@ -4,7 +4,7 @@
         <SearchResultsViewAside :set-data-updated-to-true="setDataUpdatedToTrue" :hotels-to-show="hotelsToShow"
             :set-client-side-filters="setClientSideFilters" />
         <SearchResultsViewMain :hotels-to-show="hotelsToShow" :hotels-meta-data="hotelsMetaData" :loading="loading"
-            :set-data-updated-to-true="setDataUpdatedToTrue"  />
+            :set-data-updated-to-true="setDataUpdatedToTrue"  :set-client-side-filters="setClientSideFilters" />
     </section>
     <h2 v-if="error">{{ error }}</h2>
     <BaseSpinner v-if="loading" />
@@ -30,7 +30,7 @@ let loading = ref(false)
 let hotelsFromApiRequests = ref([])
 let hotelsMetaData = ref([])
 let hotelsToShow = ref([])
-let setClientSideFilters = (clientSideFilters = { rating: null, name: null }) => {
+let setClientSideFilters = (clientSideFilters = { rating: 0, name: "" }) => {
     let hasClientSideFilterInLocalStorage = checkInLocalStorage('clientFilter')
     if (hasClientSideFilterInLocalStorage) {
         let clientSideFiltersinLocalStorage = getDataFromLocalStorage('clientFilter')
